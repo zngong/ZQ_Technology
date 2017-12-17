@@ -1,9 +1,13 @@
-# NgZorro
+# ZQ_SYSTEM
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.1.
 
-## Development server
+## start prerequisites 
+1.Install node.js
+2.Go to the directory where this project
+3.run 'npm install'
 
+## how to start server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
