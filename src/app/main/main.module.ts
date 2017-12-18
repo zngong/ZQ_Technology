@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainComponent }   from './main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { ModalService } from '../common/modal/modal.service'
 
 
 /**
@@ -23,7 +24,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
      MainComponent,
   ],
   exports:      [],
-  providers:    [],
+  providers:    [ModalService],
   bootstrap: [MainComponent]
 })
 export class MainModule {
