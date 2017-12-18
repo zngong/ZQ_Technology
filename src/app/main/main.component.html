@@ -2,6 +2,7 @@
     <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed">
       <div class="logo">
       </div>
+    
       <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
         <li nz-submenu>
           <span title><i class="anticon anticon-user"></i><span class="nav-text">User</span></span>
@@ -22,7 +23,30 @@
       </ul>
     </nz-sider>
     <nz-layout>
-      <nz-header style="background: #fff; padding:0;"></nz-header>
+      <nz-header style="background: #404040; padding:0;">
+        <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;width: 90%;display: inline-block;float: left;">
+          <li nz-menu-item>nav 1</li>
+          <li nz-menu-item>nav 2</li>
+          <li nz-menu-item>nav 3</li>
+        </ul>
+        <nz-dropdown style="line-height: 64px;float: left;">
+          <a class="ant-dropdown-link" nz-dropdown style="color:#fff">
+            张三 <i class="anticon anticon-down"></i>
+          </a>
+          <ul nz-menu>
+            <li nz-menu-item>
+              
+              <a target="_blank" rel="noopener noreferrer" (click)="logout()">退出登录</a>
+            </li>
+            <li nz-menu-item>
+              <a target="_blank" rel="noopener noreferrer" href="#">修改密码</a>
+            </li>
+            <li nz-menu-item>
+              <a target="_blank" rel="noopener noreferrer" href="#">个人信息</a>
+            </li>
+          </ul>
+        </nz-dropdown>
+      </nz-header>
       <nz-content style="margin:0 16px;display: flex;flex: 1;flex-direction: column;">
         <nz-breadcrumb style="margin:12px 0;">
           <nz-breadcrumb-item>User</nz-breadcrumb-item>

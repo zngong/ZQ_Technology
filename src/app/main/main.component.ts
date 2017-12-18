@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ModalService } from '../common/modal/modal.service';
+import { ConfirmConfig } from '../common/modal/modal-config';
 
 @Component({
   selector: 'zq-main',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   isCollapsed = false;//默认展开菜单
-  constructor() { }
+  constructor(private router:Router,private modalService:ModalService) { }
 
   ngOnInit() {
+  }
+  logout(){
+    let exitSysCfg = new ConfirmConfig('您确定退出系统吗？','');
+    this.modalService.confirm(exitSysCfg).then((result) => {
+      if(result == 'OK'){
+        this.router.navigate(['/login']);
+      }
+    });
+   
   }
 
 }
