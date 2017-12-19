@@ -14,6 +14,9 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
   }
+  clickTag(event){
+    console.log("===event=====",event)
+  }
   logout(){
     let exitSysCfg = new ConfirmConfig('您确定退出系统吗？','');
     this.modalService.confirm(exitSysCfg).then((result) => {

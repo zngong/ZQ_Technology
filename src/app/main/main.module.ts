@@ -6,8 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainComponent }   from './main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { ModalService } from '../common/modal/modal.service'
-
+import { ModalService } from '../common/modal/modal.service';
+import { ZqTabsComponent } from '../common/tabs/tabs.component';
 
 /**
  * 主体模块
@@ -22,6 +22,7 @@ import { ModalService } from '../common/modal/modal.service'
   ],
   declarations: [
      MainComponent,
+     ZqTabsComponent
   ],
   exports:      [],
   providers:    [ModalService],

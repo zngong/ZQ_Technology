@@ -1,6 +1,7 @@
   <nz-layout style="height:100%">
     <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed">
-      <div class="logo">
+      <div class="logo" style="text-align: center;padding-top: 15px;">
+        <h1 style="color:#fff">logo</h1>
       </div>
     
       <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
@@ -24,14 +25,14 @@
     </nz-sider>
     <nz-layout>
       <nz-header style="background: #404040; padding:0;">
-        <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;width: 90%;display: inline-block;float: left;">
+        <!-- <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;width: 90%;display: inline-block;float: left;">
           <li nz-menu-item>nav 1</li>
           <li nz-menu-item>nav 2</li>
           <li nz-menu-item>nav 3</li>
-        </ul>
-        <nz-dropdown style="line-height: 64px;float: left;">
+        </ul> -->
+        <nz-dropdown style="line-height: 64px;float: right;margin-right:5%">
           <a class="ant-dropdown-link" nz-dropdown style="color:#fff">
-            张三 <i class="anticon anticon-down"></i>
+            您好，张三 <i class="anticon anticon-down"></i>
           </a>
           <ul nz-menu>
             <li nz-menu-item>
@@ -48,10 +49,7 @@
         </nz-dropdown>
       </nz-header>
       <nz-content style="margin:0 16px;display: flex;flex: 1;flex-direction: column;">
-        <nz-breadcrumb style="margin:12px 0;">
-          <nz-breadcrumb-item>User</nz-breadcrumb-item>
-          <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
-        </nz-breadcrumb>
+        <zq-tabs-operation (clickEvents)="clickTag($event)"></zq-tabs-operation>
         <div style="padding:24px; background: #fff; min-height: 360px;height:100%">
           Bill is a cat.
         </div>
