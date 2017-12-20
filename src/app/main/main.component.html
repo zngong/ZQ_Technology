@@ -4,27 +4,18 @@
         <h1 style="color:#fff">logo</h1>
       </div>
     
-      <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
-        <li nz-submenu>
-          <span title><i class="anticon anticon-user"></i><span class="nav-text">User</span></span>
-          <ul>
-            <li nz-menu-item>Tom</li>
-            <li nz-menu-item>Bill</li>
-            <li nz-menu-item>Alex</li>
+      <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'" >
+        <li nz-submenu *ngFor="let menu of menuData">
+          <span title><i class="anticon anticon-user"></i><span class="nav-text">{{menu.name}}</span></span>
+          <ul *ngFor="let child of menu.children">
+            <li nz-menu-item>{{child.name}}</li>
           </ul>
         </li>
-        <li nz-submenu>
-          <span title><i class="anticon anticon-team"></i><span class="nav-text">Team</span></span>
-          <ul>
-            <li nz-menu-item>Team 1</li>
-            <li nz-menu-item>Team 2</li>
-          </ul>
-        </li>
-        <li nz-menu-item><span><i class="anticon anticon-file"></i><span class="nav-text">File</span></span></li>
       </ul>
     </nz-sider>
     <nz-layout>
       <nz-header style="background: #404040; padding:0;">
+        <!-- 此处为横向菜单 如有需要，请取消注释 -->
         <!-- <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;width: 90%;display: inline-block;float: left;">
           <li nz-menu-item>nav 1</li>
           <li nz-menu-item>nav 2</li>
@@ -51,9 +42,11 @@
       <nz-content style="margin:0 16px;display: flex;flex: 1;flex-direction: column;">
         <zq-tabs-operation (clickEvents)="clickTag($event)"></zq-tabs-operation>
         <div style="padding:24px; background: #fff; min-height: 360px;height:100%">
-          Bill is a cat.
+            <router-outlet></router-outlet>
         </div>
       </nz-content>
       <nz-footer style="text-align: center;">Ant Design ©2017 Implement By ZQ Technology</nz-footer>
     </nz-layout>
   </nz-layout>
+  <zq-spin [loadSize]="'large'" [closeSpin]="spinStatus" *ngIf="spinStatus"></zq-spin>
+  

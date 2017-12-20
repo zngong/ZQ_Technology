@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalService } from '../common/modal/modal.service';
+import { Subscription } from 'rxjs/Subscription';
 import { ConfirmConfig } from '../common/modal/modal-config';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'zq-main',
@@ -10,11 +12,24 @@ import { ConfirmConfig } from '../common/modal/modal-config';
 })
 export class MainComponent implements OnInit {
   isCollapsed = false;//默认展开菜单
-  constructor(private router:Router,private modalService:ModalService) { }
+  spinStatus:boolean = false;
+  menuData:Array<any>;
+  constructor(private router:Router,private modalService:ModalService,private appService:AppService) {
+     this.appService.reqMenu();
+   }
 
   ngOnInit() {
+    this.appService.getMenus().subscribe(config => {
+      if(config.retCode == 'SUCCESS'){
+        this.menuData = config.result;
+        console.log("===this.menuData =====",this.menuData )
+      }else{
+        console.log(config)
+      }
+});
   }
   clickTag(event){
+    this.spinStatus = true;
     console.log("===event=====",event)
   }
   logout(){

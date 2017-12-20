@@ -8,6 +8,8 @@ import { MainRoutingModule } from './main-routing.module';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ModalService } from '../common/modal/modal.service';
 import { ZqTabsComponent } from '../common/tabs/tabs.component';
+import { SpinModule } from '../common/spin/spin.module';
+import { AppService } from '../app.service';
 
 /**
  * 主体模块
@@ -17,6 +19,7 @@ import { ZqTabsComponent } from '../common/tabs/tabs.component';
      CommonModule, 
      FormsModule,
      NgbModule,
+     SpinModule,
      MainRoutingModule,
      NgZorroAntdModule.forRoot()
   ],
@@ -25,6 +28,7 @@ import { ZqTabsComponent } from '../common/tabs/tabs.component';
      ZqTabsComponent
   ],
   exports:      [],
+  providers:    [ModalService,AppService],
   bootstrap: [MainComponent]
 })
 export class MainModule {
