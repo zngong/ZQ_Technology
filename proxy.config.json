@@ -1,0 +1,8 @@
+    {
+      "/api":{
+        "target":"http://210.16.185.150:8080",
+        "secure":false,
+        "changeOrigin":true,
+        "pathRewrite":{"^/api":""}
+      }
+    }
