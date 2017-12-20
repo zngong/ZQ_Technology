@@ -2,11 +2,13 @@ import { NgModule }   from '@angular/core';
 import { CommonModule }       from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-
-import { LoginComponent }   from './login.component';
-
 import { LoginRoutingModule } from './login-routing.module';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { LoginComponent }   from './login.component';
+import { SpinModule } from '../common/spin/spin.module';
+import { AppService } from '../app.service';
+
+
 
 
 
@@ -16,12 +18,14 @@ import { LoginRoutingModule } from './login-routing.module';
      FormsModule,
      ReactiveFormsModule,
      NgbModule,
-     LoginRoutingModule
+     LoginRoutingModule,
+     NgZorroAntdModule.forRoot(),
+     SpinModule,
   ],
   declarations: [
-     LoginComponent
+     LoginComponent,
   ],
   exports:      [],
-  providers:    []
+  providers:    [AppService]
 })
 export class LoginModule { }

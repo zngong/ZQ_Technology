@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Md5 } from "ts-md5/dist/md5";
+import { AppService } from '../app.service';
+import {NzMessageService} from 'ng-zorro-antd';
 
 
 @Component({
@@ -12,8 +14,9 @@ import { Md5 } from "ts-md5/dist/md5";
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  spinStatus:boolean = false;
 
-  constructor(private router: Router, private formBuilder: FormBuilder,) {
+  constructor(private router: Router, private formBuilder: FormBuilder, private appService:AppService,private msgService:NzMessageService) {
     let userNameFc = new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(15)]));
     let passwordFc = new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(15)]));
     this.loginForm = this.formBuilder.group({
@@ -36,7 +39,19 @@ export class LoginComponent implements OnInit {
    */
   login() {
     if (this.loginForm.valid) {
-      this.router.navigate(['/main']);
+      this.spinStatus = true;
+      // this.appService.authLogin(this.loginForm['value'].userName,this.loginForm['value'].password).then((data)=>{
+      //   console.log('=====登录成功====',data)
+      //   this.spinStatus = false
+      //   this.router.navigate(['/main']);
+      // },(error)=>{
+      //   this.msgService.error('登录失败!', {nzDuration: 3000});
+      //   this.spinStatus = false;
+      //   console.log('=====登录失败====',error)
+      // }) 
+      setTimeout(()=>{
+        this.router.navigate(['/main']);
+      },3000)
     }
   }
 

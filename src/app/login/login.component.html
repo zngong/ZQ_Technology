@@ -47,40 +47,5 @@
     <div class="c-login-desc">
         系统仅支持Edge、Google Chrome、Mozilla Firefox以及其它主流的浏览器，如您的浏览器无法使用本系统，请更换其它浏览器！
     </div>
-    <!-- <div class="top_div"></div>
-    <div class="bottom_div">
-        <form [formGroup]="loginForm" role="form" novalidate>
-            <div class="dyn_img">
-                <div class="tou"></div>
-                <div class="initial_left_hand" [ngClass]="{'left_hand':getFocus == true}"></div>
-                <div class="initial_right_hand" [ngClass]="{'right_hand':getFocus == true}"></div>
-            </div>
-            <div class="username">
-                <span class="u_logo"></span>
-                <input class="ipt" type="text" placeholder="请输入用户名" formControlName="userName">
-                <p class="c-validator-invalid" [hidden]="!(loginForm.controls['userName'].errors && loginForm.controls['userName'].dirty)">
-                        用户名必填，6-15位！
-                </p>
-            </div>
-            <div class="password">
-                <span class="p_logo"></span>
-                <input class="ipt" type="password" (focus)="getFocus = true" (blur)="getFocus = false"  
-                placeholder="请输入密码" formControlName="password">
-                <p class="c-validator-invalid" [hidden]="!(loginForm.controls['password'].errors && loginForm.controls['password'].dirty)">
-                        密码必填，6-15位！
-                </p>
-            </div>
-            <div class="login_btn">
-                <div>
-                    <span class="fl">
-                        <a class="forgetPass" href="#">忘记密码?</a>
-                    </span>
-                    <span class="fr">
-                        <a class="user_register" href="#">注册</a>
-                        <a class="user_login" (click)="login()">登录</a>
-                    </span>
-                </div>
-            </div>
-        </form>
-    </div> -->
 </div>
+<zq-spin [loadSize]="'large'" [closeSpin]="spinStatus"></zq-spin>
