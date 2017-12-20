@@ -15,18 +15,16 @@ export class MainComponent implements OnInit {
   spinStatus:boolean = false;
   menuData:Array<any>;
   constructor(private router:Router,private modalService:ModalService,private appService:AppService) {
-     this.appService.reqMenu();
+    
    }
 
   ngOnInit() {
-    this.appService.getMenus().subscribe(config => {
-      if(config.retCode == 'SUCCESS'){
-        this.menuData = config.result;
-        console.log("===this.menuData =====",this.menuData )
-      }else{
-        console.log(config)
-      }
-});
+    this.appService.getMenu().then((data)=>{
+      this.menuData = data.menuData;
+       console.log(data)
+    },(error)=>{
+      console.log(error)
+    });
   }
   clickTag(event){
     this.spinStatus = true;

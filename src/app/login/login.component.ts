@@ -40,18 +40,15 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.loginForm.valid) {
       this.spinStatus = true;
-      // this.appService.authLogin(this.loginForm['value'].userName,this.loginForm['value'].password).then((data)=>{
-      //   console.log('=====登录成功====',data)
-      //   this.spinStatus = false
-      //   this.router.navigate(['/main']);
-      // },(error)=>{
-      //   this.msgService.error('登录失败!', {nzDuration: 3000});
-      //   this.spinStatus = false;
-      //   console.log('=====登录失败====',error)
-      // }) 
-      setTimeout(()=>{
+      this.appService.authLogin(this.loginForm['value'].userName,this.loginForm['value'].password).then((data)=>{
+        console.log('=====登录成功====',data)
+        this.spinStatus = false
         this.router.navigate(['/main']);
-      },3000)
+      },(error)=>{
+        this.msgService.error('登录失败!', {nzDuration: 3000});
+        this.spinStatus = false;
+        console.log('=====登录失败====',error)
+      }) 
     }
   }
 
