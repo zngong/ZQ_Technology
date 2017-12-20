@@ -25,7 +25,6 @@ import { ZqTabsComponent } from '../common/tabs/tabs.component';
      ZqTabsComponent
   ],
   exports:      [],
-  providers:    [ModalService],
   bootstrap: [MainComponent]
 })
 export class MainModule {
