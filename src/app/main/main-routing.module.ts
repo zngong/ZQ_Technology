@@ -12,6 +12,7 @@ const mainRoutes: Routes = [
     component: MainComponent,
     children: [
       // { path: '', loadChildren: 'app/business/role/role.module#RoleModule'  },
+      // {path: '', redirectTo: 'user', pathMatch: 'full'},
       { path: 'user', loadChildren: 'app/business/user/user.module#UserModule' }
     ]
   }

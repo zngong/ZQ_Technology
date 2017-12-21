@@ -9,6 +9,7 @@ import { UserListComponent } from "./userList.component"
 @NgModule({
     imports:[
         RouterModule,
+        UserRoutingModule
     ],
     declarations:[
         UserComponent,
@@ -16,6 +17,6 @@ import { UserListComponent } from "./userList.component"
     ],
     exports:[],
     providers:[UserService],
-    bootstrap:[UserComponent]
+    // bootstrap:[UserComponent]
 })
 export class UserModule {}

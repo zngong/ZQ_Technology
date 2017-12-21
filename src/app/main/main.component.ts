@@ -26,10 +26,10 @@ export class MainComponent implements OnInit {
       console.log(error)
     });
   }
-  // clickTag(event){
-  //   this.spinStatus = true;
-  //   console.log("===event=====",event)
-  // }
+  clickTag(event){
+    this.spinStatus = true;
+    console.log("===event=====",event)
+  }
   selectMenu (item){
     this.router.navigate([item.url]);
   }

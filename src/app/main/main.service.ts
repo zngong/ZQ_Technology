@@ -23,6 +23,7 @@ export class MainService {
     getMenu():Promise<any>{
         // const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
         var promise = new Promise((resolve, reject) => {
+        // this.http.get(this.appService.serverUrl+"/menu/allmenu")
         this.http.get("assets/data/menu.json")
             .map(res=>res.json())
                 .subscribe(response =>{
