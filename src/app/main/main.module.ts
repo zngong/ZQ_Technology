@@ -10,6 +10,7 @@ import { ModalService } from '../common/modal/modal.service';
 import { ZqTabsComponent } from '../common/tabs/tabs.component';
 import { SpinModule } from '../common/spin/spin.module';
 import { AppService } from '../app.service';
+import { MainService } from './main.service';
 
 /**
  * 主体模块
@@ -21,14 +22,14 @@ import { AppService } from '../app.service';
      NgbModule,
      SpinModule,
      MainRoutingModule,
-     NgZorroAntdModule.forRoot()
+     NgZorroAntdModule.forRoot({ extraFontName: 'anticon', extraFontUrl: './assets/fonts/iconfont' })
   ],
   declarations: [
      MainComponent,
      ZqTabsComponent
   ],
   exports:      [],
-  providers:    [ModalService,AppService],
+  providers:    [ModalService,AppService,MainService],
   bootstrap: [MainComponent]
 })
 export class MainModule {

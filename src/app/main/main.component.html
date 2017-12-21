@@ -8,7 +8,7 @@
         <li nz-submenu *ngFor="let menu of menuData">
           <span title><i class="anticon anticon-user"></i><span class="nav-text">{{menu.name}}</span></span>
           <ul *ngFor="let child of menu.children">
-            <li nz-menu-item>{{child.name}}</li>
+            <li nz-menu-item (click)="selectMenu(child)">{{child.name}}</li>
           </ul>
         </li>
       </ul>
@@ -26,15 +26,14 @@
             您好，张三 <i class="anticon anticon-down"></i>
           </a>
           <ul nz-menu>
-            <li nz-menu-item>
-              
-              <a target="_blank" rel="noopener noreferrer" (click)="logout()">退出登录</a>
+            <li nz-menu-item style="width:80px">
+              <a target="_blank" rel="noopener noreferrer" (click)="logout()"><i class="anticon anticon-logout" style="margin-right: 5px;"></i>退出登录</a>
             </li>
             <li nz-menu-item>
-              <a target="_blank" rel="noopener noreferrer" href="#">修改密码</a>
+              <a target="_blank" rel="noopener noreferrer" href="#"><i class="anticon anticon-edit" style="margin-right: 5px;"></i>修改密码</a>
             </li>
             <li nz-menu-item>
-              <a target="_blank" rel="noopener noreferrer" href="#">个人信息</a>
+              <a target="_blank" rel="noopener noreferrer" href="#"><i class="anticon anticon-user" style="margin-right: 5px;"></i>个人信息</a>
             </li>
           </ul>
         </nz-dropdown>

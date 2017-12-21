@@ -7,6 +7,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { LoginComponent }   from './login.component';
 import { SpinModule } from '../common/spin/spin.module';
 import { AppService } from '../app.service';
+import { LoginService } from './login.service';
 
 
 
@@ -26,6 +27,6 @@ import { AppService } from '../app.service';
      LoginComponent,
   ],
   exports:      [],
-  providers:    [AppService]
+  providers:    [AppService,LoginService]
 })
 export class LoginModule { }
