@@ -1,6 +1,6 @@
 
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, Router } from '@angular/router';
+import { RouterModule, Routes, Router , RouteReuseStrategy} from '@angular/router';
 import { MainComponent }   from './main.component';
 
 /**
@@ -13,7 +13,8 @@ const mainRoutes: Routes = [
     children: [
       // { path: '', loadChildren: 'app/business/role/role.module#RoleModule'  },
       // {path: '', redirectTo: 'user', pathMatch: 'full'},
-      { path: 'user', loadChildren: 'app/business/user/user.module#UserModule' }
+      { path: 'user', loadChildren: 'app/business/business.module#BusinessModule' },
+      { path: 'role', loadChildren: 'app/business/business.module#BusinessModule' }
     ]
   }
 ];

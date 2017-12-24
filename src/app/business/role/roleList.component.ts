@@ -4,7 +4,7 @@ import {NzMessageService} from 'ng-zorro-antd';
 
 
 @Component({
-  selector: 'zq-user-roleList',
+  selector: 'zq-role-roleList',
   templateUrl: './roleList.component.html',
   styleUrls: ['./roleList.component.css']
 })

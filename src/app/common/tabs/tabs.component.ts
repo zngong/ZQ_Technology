@@ -1,4 +1,4 @@
-import { Component ,Output , Input ,EventEmitter} from '@angular/core';
+import { Component ,Output , Input ,EventEmitter ,OnInit} from '@angular/core';
 import {NzMessageService} from 'ng-zorro-antd';
 
 
@@ -17,22 +17,15 @@ import {NzMessageService} from 'ng-zorro-antd';
     </nz-tabset>`,
   styles  : []
 })
-export class ZqTabsComponent {
+export class ZqTabsComponent implements OnInit {
     @Output() clickEvents = new EventEmitter();
-   
-    
-    tabs = [
-      {
-        name: 'Tab 1'
-      },
-      {
-        name: 'Tab 2'
-      },
-      {
-        name: 'Tab 3'
-      }
-    ];
-  constructor(private messageService:NzMessageService){ }
+    @Input() tabList;
+    tabs : Array<any>
+  constructor(private messageService:NzMessageService){}
+  ngOnInit(){
+    this.tabs = this.tabList;
+    console.log('=====tabs=====',this.tabList)
+  }
   childEvent(tab) {
     this.clickEvents.emit(tab)
   }

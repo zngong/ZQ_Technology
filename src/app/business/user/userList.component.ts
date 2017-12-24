@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import {NzMessageService} from 'ng-zorro-antd';
 
 
+
 @Component({
   selector: 'zq-user-userList',
   templateUrl: './userList.component.html',
   styleUrls: ['./userList.component.css']
 })
 export class UserListComponent implements OnInit {
-
 
   constructor(private router: Router,private msgService:NzMessageService) {
    

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 
 @Component({
-  selector: 'zq-role',
+  selector: 'zq-business',
   template: '<router-outlet></router-outlet>'
 })
-export class RoleComponent {
+export class BusinessComponent {
 
 }

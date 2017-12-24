@@ -27,7 +27,7 @@
         "name": "系统日志",
         "keyWord": "xtrz",
         "icon": "fa-file",
-        "url": ""
+        "url": "/main/role/roleList"
       }]
     }]
   }

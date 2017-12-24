@@ -47,5 +47,26 @@ export class MainService {
      cancelMenuSubject(){
         this.menuSubject.unsubscribe();
     }
+    //根据id字段判断数组中是否存在该元素，是返回第一次出现的索引值，不是返回-1，参数不正确返回‘error’
+    arrayRemoveRepet(array:Array<any>,id,value){
+        var indexs = '';
+        if(Array.isArray(array) && id){
+            if(array.length == 0){
+                return -1
+            }
+            for(let i = 0;i<array.length;i++){
+                if(array[i][id] == value){
+                    return i
+                }
+                if(i == array.length-1 && indexs === ''){
+                    return -1
+                }
+            }
+
+        }else{
+            console.log('参数不正确')
+            return 'error'
+        }
+    }
    
 }
