@@ -18,11 +18,13 @@ const businessRoutes: Routes = [
     children: [
         {
             path:'userList',
-            component:UserListComponent
+            component:UserListComponent,
+            data: { title: '用户列表', module: 'userList', power: "SHOW" }
         },
         {
             path:'roleList',
-            component:RoleListComponent
+            component:RoleListComponent,
+            data: { title: '系统日志', module: 'roleList', power: "SHOW" } ,
         }
     ]
   }

@@ -1,7 +1,7 @@
 
 import { RouteReuseStrategy, DefaultUrlSerializer, ActivatedRouteSnapshot, DetachedRouteHandle } from '@angular/router';
 
-export class SimpleReuseStrategy implements RouteReuseStrategy {
+export class AppReuseStrategy implements RouteReuseStrategy {
 
     public static handlers: { [key: string]: DetachedRouteHandle } = {}
 
@@ -12,12 +12,13 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
 
     /** 当路由离开时会触发。按path作为key存储路由快照&组件当前实例对象 */
     public store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
-        SimpleReuseStrategy.handlers[route.routeConfig.path] = handle
+        console.log(route,"路由离开")
+        AppReuseStrategy.handlers[route.routeConfig.path] = handle
     }
 
     /** 若 path 在缓存中有的都认为允许还原路由 */
     public shouldAttach(route: ActivatedRouteSnapshot): boolean {
-        return !!route.routeConfig && !!SimpleReuseStrategy.handlers[route.routeConfig.path]
+        return !!route.routeConfig && !!AppReuseStrategy.handlers[route.routeConfig.path]
     }
 
     /** 从缓存中获取快照，若无则返回nul */
@@ -26,7 +27,7 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
             return null
         }
         
-        return SimpleReuseStrategy.handlers[route.routeConfig.path]
+        return AppReuseStrategy.handlers[route.routeConfig.path]
     }
 
     /** 进入路由触发，判断是否同一路由 */

@@ -3,7 +3,7 @@ import { CommonModule }       from '@angular/common';
 import { FormsModule }        from '@angular/forms';
 import { RouteReuseStrategy} from "@angular/router";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SimpleReuseStrategy } from '../common/routeReuse/routeReuseStrategy';
+import { AppReuseStrategy } from '../common/routeReuse/routeReuseStrategy';
 import { MainComponent }   from './main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -30,7 +30,7 @@ import { MainService } from './main.service';
      ZqTabsComponent
   ],
   exports:      [],
-  providers:    [ModalService,AppService,MainService, { provide: RouteReuseStrategy, useClass: SimpleReuseStrategy }],
+  providers:    [ModalService,AppService,MainService, { provide: RouteReuseStrategy, useClass: AppReuseStrategy }],
   bootstrap: [MainComponent]
 })
 export class MainModule {
