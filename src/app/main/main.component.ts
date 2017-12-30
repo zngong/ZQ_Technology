@@ -19,17 +19,7 @@ export class MainComponent implements OnInit {
   menuData:Array<any>;
   seleceTabIndex:Number;
   currentTab;
-  tabArray:Array<any> = [
-    // {
-    //   name: 'Tab 1'
-    // },
-    // {
-    //   name: 'Tab 2'
-    // },
-    // {
-    //   name: 'Tab 3'
-    // }
-  ];
+  tabArray:Array<any> = [];
   constructor(private router:Router,private modalService:ModalService,private mainService:MainService,
      private el: ElementRef) {
         
@@ -46,12 +36,9 @@ export class MainComponent implements OnInit {
       this.router.navigate(['main']);
     }
   }
-  //点击页签
+  //点击页签(跟选中左侧菜单一致)
   clickTag(event){
-    // this.spinStatus = true;
-    // console.log("===event=====",this.tabArray)
-    this.tagSelect(event);
-    this.router.navigate([event.url]);
+    this.selectMenu(event);
   }
   //左侧菜单选中
   selectMenu (item){
@@ -66,6 +53,7 @@ export class MainComponent implements OnInit {
             element.select = true;
             this.currentTab = element;
             this.router.navigate([item.url]);
+            this.leftMenuClass(element,index)
           }else{
             element.select = false;
           }
@@ -76,28 +64,29 @@ export class MainComponent implements OnInit {
           if(element.id == item.id){
             element.select = true;
             this.currentTab = element;
+            this.leftMenuClass(element,index)
           }else{
             element.select = false;
           }
           return element;
         })
         this.router.navigate([item.url]);
+        
       }
     }
   }
   //选择页签后的回调
   tagSelect(tab){
-    this.router.navigate([tab.url]);
-    // debugger
+    
   }
   //关闭页签的回调
-  closeTab(tab){
-    
-    var index = this.tabArray.indexOf(tab);
+  closeTab(param){
+    var index = param.index;
     this.tabArray.splice(index, 1);
+    var tab= param.tab;
     if(this.tabArray.length == 0){
       this.router.navigate(['main']);
-      this.leftMenuClass(tab,'');
+      this.leftMenuClass(tab,-1);
     }else{
       if(index > 0){
         this.router.navigate([this.tabArray[index-1].url]);
@@ -113,9 +102,7 @@ export class MainComponent implements OnInit {
   }
   //左侧菜单样式控制
   leftMenuClass(tab,index){
-    
     var arr = document.getElementsByName("leftMenu");
-    console.log('====arr======',arr)
     if(tab.select == true){
       for(let i = 0;i<arr.length;i++){
         if(arr[i].classList.length == 2){

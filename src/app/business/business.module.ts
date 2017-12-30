@@ -18,6 +18,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  */
 import { UserListComponent } from "./user/userList.component";
 import { RoleListComponent } from "./role/roleList.component";
+import { RightListComponent } from "./right/rightList.component";
 
 /**
  * service
@@ -34,6 +35,7 @@ import { BusinessService } from "./business.service"
         BusinessComponent,
         UserListComponent,
         RoleListComponent,
+        RightListComponent
     ],
     exports:[],
     providers:[ { provide: RouteReuseStrategy, useClass: AppReuseStrategy },BusinessService],

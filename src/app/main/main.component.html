@@ -39,7 +39,7 @@
         </nz-dropdown>
       </nz-header>
       <nz-content style="margin:0 16px;display: flex;flex: 1;flex-direction: column;">
-        <zq-tabs-operation [currentTab]="currentTab" (closeTabs)="closeTab($event)" (clickEvents)="clickTag($event)" (nzSelect)="tagSelect($event)"  [tabList]="tabArray"></zq-tabs-operation>
+        <zq-tabs-operation [currentTab]="currentTab" (closeTabs)="closeTab($event)" (clickEvents)="clickTag($event)"  [tabList]="tabArray"></zq-tabs-operation>
         <div style="padding:24px; background: #fff; min-height: 360px;height:100%">
             <router-outlet></router-outlet>
         </div>

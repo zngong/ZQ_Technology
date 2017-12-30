@@ -29,5 +29,21 @@
         "icon": "fa-file",
         "url": "/main/role/roleList"
       }]
-    }]
+    },
+    {
+      "id": "41",
+      "parentId": "0",
+      "name": "权限管理",
+      "keyWord": "txgl",
+      "icon": "fa-cube",
+      "children": [{
+        "id": "42",
+        "parentId": "41",
+        "name": "权限列表",
+        "keyWord": "xtrz",
+        "icon": "fa-file",
+        "url": "/main/right/rightList"
+      }]
+    }
+  ]
   }

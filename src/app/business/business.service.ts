@@ -17,7 +17,7 @@ export class BusinessService {
         
     }
     operateTab(tabList:Array<any>){
-        console.log("====tabList=====",tabList)
+        // console.log("====tabList=====",tabList)
         this.tabSubject.next(tabList);
     }
      //获取tab
