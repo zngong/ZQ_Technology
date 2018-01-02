@@ -14,7 +14,7 @@ import { AppService } from '../../app/app.service'
 @Injectable()
 export class MainService {
     private menuSubject = new Subject<any>();
-   
+    public tabList = [];
 
     constructor(private http:Http,private appService:AppService) {
         

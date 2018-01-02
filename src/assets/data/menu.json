@@ -11,7 +11,7 @@
         "id": "20",
         "parentId": "20",
         "name": "用户列表",
-        "keyWord": "yhgl",
+        "keyWord": "user",
         "icon": "fa-user-circle-o",
         "url": "/main/user/userList"
       }]
@@ -25,7 +25,7 @@
         "id": "32",
         "parentId": "32",
         "name": "系统日志",
-        "keyWord": "xtrz",
+        "keyWord": "role",
         "icon": "fa-file",
         "url": "/main/role/roleList"
       }]
@@ -40,7 +40,7 @@
         "id": "42",
         "parentId": "41",
         "name": "权限列表",
-        "keyWord": "xtrz",
+        "keyWord": "right",
         "icon": "fa-file",
         "url": "/main/right/rightList"
       }]

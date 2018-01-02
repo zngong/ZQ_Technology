@@ -7,6 +7,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule }    from '@angular/http';
 import  { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+/**
+ * 路由复用
+ */
+import { RouterModule ,RouteReuseStrategy} from "@angular/router";
+import { AppReuseStrategy } from './common/routeReuse/routeReuseStrategy';
+
+/**
+ * service
+ */
+import { MainService } from './main/main.service'
 
 @NgModule({
   declarations: [
@@ -22,7 +32,7 @@ import { AppComponent } from './app.component';
     NgbModule.forRoot()
     
   ],
-  providers:[],
+  providers:[{ provide: RouteReuseStrategy, useClass: AppReuseStrategy },MainService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

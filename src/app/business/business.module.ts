@@ -3,12 +3,7 @@ import { CommonModule }       from '@angular/common';
 import { DateModule } from "../common/date/date.module";
 import { BusinessRoutingModule } from "./business-routing.module";
 import { BusinessComponent } from "./business.component";
-// import { UserService } from "./user/user.service";
-/**
- * 路由复用
- */
-import { RouterModule ,RouteReuseStrategy} from "@angular/router";
-import { AppReuseStrategy } from '../common/routeReuse/routeReuseStrategy';
+
 /**
  * 公共组件
  */
@@ -28,7 +23,6 @@ import { BusinessService } from "./business.service"
 
 @NgModule({
     imports:[
-        RouterModule,
         BusinessRoutingModule
     ],
     declarations:[
@@ -38,6 +32,6 @@ import { BusinessService } from "./business.service"
         RightListComponent
     ],
     exports:[],
-    providers:[ { provide: RouteReuseStrategy, useClass: AppReuseStrategy },BusinessService],
+    providers:[BusinessService],
 })
 export class BusinessModule {}

@@ -13,9 +13,9 @@ const mainRoutes: Routes = [
     children: [
       // { path: '', loadChildren: 'app/business/role/role.module#RoleModule'  },
       // {path: '', redirectTo: 'user', pathMatch: 'full'},
-      { path: 'user', loadChildren: 'app/business/business.module#BusinessModule' },
-      { path: 'role', loadChildren: 'app/business/business.module#BusinessModule' },
-      { path: 'right', loadChildren: 'app/business/business.module#BusinessModule' }
+      { path: 'user', loadChildren: 'app/business/business.module#BusinessModule',data:{key:"user"}},
+      { path: 'role', loadChildren: 'app/business/business.module#BusinessModule',data:{key:"role"} },
+      { path: 'right', loadChildren: 'app/business/business.module#BusinessModule',data:{key:"right"}}
     ]
   }
 ];

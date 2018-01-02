@@ -21,14 +21,13 @@ export class MainComponent implements OnInit {
   currentTab;
   tabArray:Array<any> = [];
   constructor(private router:Router,private modalService:ModalService,private mainService:MainService,
-     private el: ElementRef) {
+     private appReuseStrategy: AppReuseStrategy) {
         
    }
   //菜单初始化
   ngOnInit() {
     this.mainService.getMenu().then((data)=>{
       this.menuData = data.menuData;
-       console.log(data)
     },(error)=>{
       console.log(error)
     });
@@ -47,6 +46,7 @@ export class MainComponent implements OnInit {
     if(flag != 'error'){
       if(flag == -1){
         this.tabArray.push(item);
+        this.mainService.tabList = this.tabArray;
         this.tabArray = this.tabArray.filter((element,index)=>{
           if(element.id == item.id){
             element.index = index;
@@ -99,6 +99,8 @@ export class MainComponent implements OnInit {
       }
       
     }
+    this.mainService.tabList = this.tabArray;
+    // this.appReuseStrategy.deleteReuseRoute(param.tab.keyWord)
   }
   //左侧菜单样式控制
   leftMenuClass(tab,index){

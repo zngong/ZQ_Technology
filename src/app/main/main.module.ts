@@ -1,9 +1,9 @@
 import { NgModule }   from '@angular/core';
 import { CommonModule }       from '@angular/common';
 import { FormsModule }        from '@angular/forms';
-import { RouteReuseStrategy} from "@angular/router";
+// import { RouteReuseStrategy} from "@angular/router";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppReuseStrategy } from '../common/routeReuse/routeReuseStrategy';
+// import { AppReuseStrategy } from '../common/routeReuse/routeReuseStrategy';
 import { MainComponent }   from './main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -12,7 +12,6 @@ import { ZqTabsComponent } from '../common/tabs/tabs.component';
 import { SpinModule } from '../common/spin/spin.module';
 import { AppService } from '../app.service';
 import { MainService } from './main.service';
-
 /**
  * 主体模块
  */
@@ -30,7 +29,7 @@ import { MainService } from './main.service';
      ZqTabsComponent
   ],
   exports:      [],
-  providers:    [ModalService,AppService,MainService, { provide: RouteReuseStrategy, useClass: AppReuseStrategy }],
+  providers:    [ModalService,AppService,MainService],
   bootstrap: [MainComponent]
 })
 export class MainModule {
