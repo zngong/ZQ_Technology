@@ -81,8 +81,6 @@ export class MainComponent implements OnInit {
   //关闭页签的回调
   closeTab(param){
     var index = param.index;
-    // this.router.routeReuseStrategy.storedRouteHandles.delete(param.tab.keyWord);
-    
     this.tabArray.splice(index, 1);
     var tab= param.tab;
     if(this.tabArray.length == 0){
@@ -100,8 +98,10 @@ export class MainComponent implements OnInit {
       }
       
     }
-    //删除路由复用
-    this.router.routeReuseStrategy['storedRouteHandles'].delete(param.tab.keyWord);
+    //增加延迟，等新路由加载后在执行删除路由复用的操作
+     setTimeout(()=>{
+       this.router.routeReuseStrategy['storedRouteHandles'].delete(param.tab.keyWord);
+     })
   }
   //左侧菜单样式控制
   leftMenuClass(tab,index){
