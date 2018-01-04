@@ -46,7 +46,6 @@ export class MainComponent implements OnInit {
     if(flag != 'error'){
       if(flag == -1){
         this.tabArray.push(item);
-        this.mainService.tabList = this.tabArray;
         this.tabArray = this.tabArray.filter((element,index)=>{
           if(element.id == item.id){
             element.index = index;
@@ -82,6 +81,8 @@ export class MainComponent implements OnInit {
   //关闭页签的回调
   closeTab(param){
     var index = param.index;
+    // this.router.routeReuseStrategy.storedRouteHandles.delete(param.tab.keyWord);
+    
     this.tabArray.splice(index, 1);
     var tab= param.tab;
     if(this.tabArray.length == 0){
@@ -99,8 +100,8 @@ export class MainComponent implements OnInit {
       }
       
     }
-    this.mainService.tabList = this.tabArray;
-    // this.appReuseStrategy.deleteReuseRoute(param.tab.keyWord)
+    //删除路由复用
+    this.router.routeReuseStrategy['storedRouteHandles'].delete(param.tab.keyWord);
   }
   //左侧菜单样式控制
   leftMenuClass(tab,index){
