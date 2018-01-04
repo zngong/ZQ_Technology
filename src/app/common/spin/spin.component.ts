@@ -40,9 +40,6 @@ export class ZqSpinComponent  implements OnInit {
     @Input() closeSpin:boolean;
     constructor(){}
     ngOnInit(){
-        // setTimeout(()=>{
-        //     this.closeSpin = false
-        // },5000)
-        console.log(this.loadSize,this.closeSpin)
+       
     }
  }
