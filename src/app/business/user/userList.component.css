@@ -3,13 +3,18 @@
   line-height: 26px;
   position: relative;
   vertical-align: middle;
+  margin-right: 15px;
 }
-.zq-container-search .zq-search-showPart {
+.zq-container .zq-search-showPart {
     margin-left: 20px;
     width: calc(100% - 60px);
   }
-.zq-container-search .zq-search-panel {
+.zq-container .zq-search-panel {
     margin-bottom: 10px;
+}
+.zq-container .zq-content-panel{
+    margin-left: 20px;
+    width: calc(100% - 60px);
 }
 .zq-search-panel .context-title{
     display: inline-block;
