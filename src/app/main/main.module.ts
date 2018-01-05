@@ -1,9 +1,7 @@
 import { NgModule }   from '@angular/core';
 import { CommonModule }       from '@angular/common';
 import { FormsModule }        from '@angular/forms';
-// import { RouteReuseStrategy} from "@angular/router";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { AppReuseStrategy } from '../common/routeReuse/routeReuseStrategy';
 import { MainComponent }   from './main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -20,13 +18,13 @@ import { MainService } from './main.service';
      CommonModule, 
      FormsModule,
      NgbModule,
+     NgZorroAntdModule.forRoot({ extraFontName: 'anticon', extraFontUrl: './assets/fonts/iconfont' }),
      SpinModule,
      MainRoutingModule,
-     NgZorroAntdModule.forRoot({ extraFontName: 'anticon', extraFontUrl: './assets/fonts/iconfont' })
   ],
   declarations: [
      MainComponent,
-     ZqTabsComponent
+     ZqTabsComponent,
   ],
   exports:      [],
   providers:    [ModalService,AppService,MainService],
