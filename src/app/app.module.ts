@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule }    from '@angular/http';
 import  { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 /**
  * 路由复用
  */
@@ -29,7 +30,8 @@ import { MainService } from './main/main.service'
     HttpClientModule,
     HttpModule,
     BrowserAnimationsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    NgZorroAntdModule.forRoot(),
     
   ],
   providers:[{ provide: RouteReuseStrategy, useClass: AppReuseStrategy },MainService],

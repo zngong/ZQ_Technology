@@ -1,0 +1,21 @@
+.search-group {
+  display: inline-block;
+  line-height: 26px;
+  position: relative;
+  vertical-align: middle;
+}
+.zq-container-search .zq-search-showPart {
+    margin-left: 20px;
+    width: calc(100% - 60px);
+  }
+.zq-container-search .zq-search-panel {
+    margin-bottom: 10px;
+}
+.zq-search-panel .context-title{
+    display: inline-block;
+    font-weight: bold;
+}
+
+.zq-search-panel .context-content{
+    display: inline-block;
+}

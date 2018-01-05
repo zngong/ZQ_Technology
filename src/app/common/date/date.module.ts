@@ -1,21 +1,23 @@
-import { NgModule }   from '@angular/core';
+
 import { CommonModule }       from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ZqDatePickerComponent } from './date.component';
-
-
-
-
+import { DatePipe } from '@angular/common';
 
 @NgModule({
-  imports:      [
-     CommonModule, 
-     NgZorroAntdModule.forRoot(),
-  ],
   declarations: [
     ZqDatePickerComponent
   ],
-  exports:      [ZqDatePickerComponent],
-  providers:    []
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    NgZorroAntdModule
+  ],
+  exports:[ZqDatePickerComponent],
+  providers:[DatePipe]
 })
-export class DateModule { }
+export class DatePickerModule { }

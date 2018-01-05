@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { CommonModule }       from '@angular/common';
-import { DateModule } from "../common/date/date.module";
 import { BusinessRoutingModule } from "./business-routing.module";
 import { BusinessComponent } from "./business.component";
 
@@ -8,6 +7,8 @@ import { BusinessComponent } from "./business.component";
  * 公共组件
  */
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { DatePickerModule } from "../common/date/date.module";
+// import { ZqDatePickerComponent } from '../common/date/date.component';
 /**
  * 业务组件
  */
@@ -18,20 +19,23 @@ import { RightListComponent } from "./right/rightList.component";
 /**
  * service
  */
-import { BusinessService } from "./business.service"
-
-
+import { BusinessService } from "./business.service";
 @NgModule({
     imports:[
-        BusinessRoutingModule
+        CommonModule,
+        BusinessRoutingModule,
+        NgZorroAntdModule,
+        DatePickerModule
     ],
     declarations:[
         BusinessComponent,
         UserListComponent,
         RoleListComponent,
-        RightListComponent
+        RightListComponent,
+        // ZqDatePickerComponent
     ],
     exports:[],
     providers:[BusinessService],
+    bootstrap: [BusinessComponent]
 })
 export class BusinessModule {}

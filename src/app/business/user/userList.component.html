@@ -1,3 +1,22 @@
-<!-- <zq-datepicker></zq-datepicker> -->
-用户列表
-<input type="text">
+<div class="zq-container-search">
+    <!-- 查询条件区域 -->
+    <div class="zq-search-panel">
+        <div class="zq-search-showPart">
+            <div class="search-group">
+                <p class="context-title">查询日期:</p>
+                <div class="context-content">
+                  <zq-date-picker (selectDateFun)="getDate($event)"></zq-date-picker>
+                </div>
+            </div>
+
+        </div>
+        <div>
+
+        </div>
+    </div>
+    <!-- 查询结果展示区域 -->
+    <div>
+         开始时间：<span>{{startDate}}</span>
+         结束时间：<span>{{endDate}}</span>
+    </div>
+</div>
