@@ -4,6 +4,7 @@ import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms'
 import { Md5 } from "ts-md5/dist/md5";
 import { LoginService } from './login.service';
 import {NzMessageService} from 'ng-zorro-antd';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 
 @Component({
