@@ -60,8 +60,8 @@ export class ZqDatePickerComponent  implements OnInit  {
   selectDateCallBack(){
     setTimeout(()=>{
       this.dateParam = {
-        startDate: this.datePipe.transform(new Date(this._startDate), 'yy-MM-dd'),
-        endDate:this.datePipe.transform(new Date(this._endDate), 'yy-MM-dd')
+        startDate: this._startDate ? this.datePipe.transform(new Date(this._startDate), 'yyyy-MM-dd'):'',
+        endDate:this._endDate ? this.datePipe.transform(new Date(this._endDate), 'yyyy-MM-dd'):'',
       }
        this.selectDateFun.emit(this.dateParam);
     },100)
