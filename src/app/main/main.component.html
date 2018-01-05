@@ -1,7 +1,7 @@
   <nz-layout style="height:100%">
     <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed">
-      <div class="logo" style="text-align: center;padding-top: 15px;">
-        <h1 style="color:#fff">logo</h1>
+      <div class="logo" style="text-align: center;">
+          <img src="assets/img/logo.jpg"/>
       </div>
     
       <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'" >
@@ -15,7 +15,7 @@
     </nz-sider>
     <nz-layout>
       <nz-header style="background: #404040; padding:0;">
-        <!-- 此处为横向菜单 如有需要，请取消注释 -->
+        <!-- 此处为横向菜单-->
         <!-- <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;width: 90%;display: inline-block;float: left;">
           <li nz-menu-item>nav 1</li>
           <li nz-menu-item>nav 2</li>
@@ -40,7 +40,8 @@
       </nz-header>
       <nz-content style="margin:0 16px;display: flex;flex: 1;flex-direction: column;">
         <zq-tabs-operation [currentTab]="currentTab" (closeTabs)="closeTab($event)" (clickEvents)="clickTag($event)"  [tabList]="tabArray"></zq-tabs-operation>
-        <div style="padding:24px; background: #fff; min-height: 360px;height:100%">
+        <div style="padding-top:10px; background: #fff; min-height: 360px;height:100%">
+            <!-- <zq-date-picker></zq-date-picker> -->
             <router-outlet></router-outlet>
         </div>
       </nz-content>
