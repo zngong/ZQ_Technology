@@ -9,15 +9,23 @@ import { Component ,Input ,OnInit,Output,EventEmitter} from '@angular/core';
     <button nz-button [nzType]="'default'">
       <span>重置</span>
     </button>
-    <button nz-button [nzType]="'default'"  *ngIf="moreBtn" (click)="expandMoreFn()">
-    <i class="anticon moreBtn" [ngClass]="{'anticon-down':expandMore==true,'anticon-up':expandMore==false}"></i>
+    <button class="moreBtn" nz-button [nzType]="'default'"  *ngIf="moreBtn" (click)="expandMoreFn()">
+     <span *ngIf="expandMore">更多</span>
+     <span *ngIf="!expandMore">收起</span>
+    <i class="anticon moreBtnIcon" [ngClass]="{'anticon-down':expandMore==true,'anticon-up':expandMore==false}"></i>
   </button>
     
   `,
   styles  : [
     `
-     .moreBtn{
+     ..moreBtn{
+       width:60px;
+     }
+     .moreBtnIcon{
        line-height: 26px;
+     }
+     .moreBtn span{
+       margin-right:-10px;
      }
     `
   ]

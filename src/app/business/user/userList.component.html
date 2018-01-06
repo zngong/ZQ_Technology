@@ -18,8 +18,13 @@
                 <zq-search-button [moreBtn]="true" (doQuery)="doQuery($event)" (doReset)="doReset($event)" (doExpandMore)="doExpandMore($event)"></zq-search-button>
             </div>
         </div>
-        <div>
-
+        <div *ngIf="!moreStatus" class="more-condition">
+            <div class="search-group">
+                    <p class="context-title">联系电话:</p>
+                    <div class="context-content">
+                        <input type="text">
+                    </div>
+            </div>
         </div>
     </div>
     <!-- 查询结果展示区域 -->

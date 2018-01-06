@@ -9,6 +9,14 @@
     margin-left: 20px;
     width: calc(100% - 60px);
   }
+.zq-container .more-condition{
+    margin-left: 20px;
+    margin-top: 10px;
+    width: calc(100% - 60px);
+}
+.zq-container .more-condition input{
+   height: 22px;
+}
 .zq-container .zq-search-panel {
     margin-bottom: 10px;
 }

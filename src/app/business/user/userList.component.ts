@@ -16,6 +16,7 @@ export class UserListComponent implements OnInit {
   endDate:"";
   userStatus;
   statusList:Array<any>;
+  moreStatus:boolean;
   constructor(private router: Router,private msgService:NzMessageService) {
    
   }
@@ -30,6 +31,7 @@ export class UserListComponent implements OnInit {
       { value: '1', label: '未审核' },
       { value: '2', label: '已审核' }
     ]
+    this.moreStatus = true;
   }
   //获取日期
   getDate(date){
@@ -39,7 +41,7 @@ export class UserListComponent implements OnInit {
   //获取状态
   getStatus(status){
     this.userStatus = status.value;
-    console.log("====status======",status.value)
+    
   }
   //查询
   doQuery(event){
@@ -49,9 +51,9 @@ export class UserListComponent implements OnInit {
   doReset(event){
 
   }
-  //展开收起
-  doExpandMore(){
-
+  //更多(true)收起(false)
+  doExpandMore(event){
+    this.moreStatus = event;
   }
 
 
