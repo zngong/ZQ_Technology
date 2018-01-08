@@ -9,7 +9,8 @@ import { BusinessComponent } from "./business.component";
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { DatePickerModule } from "../common/date/date.module";
 import { ZqSelectModule } from '../common/select/zq-select.module';
-import { ZqSearchBtnModule } from '../common/searchButton/zq-search-btn.module'; 
+import { ZqSearchBtnModule } from '../common/searchButton/zq-search-btn.module';
+import { ZqGridModule } from '../common/grid/zq-grid.module';
 /**
  * 业务组件
  */
@@ -28,7 +29,8 @@ import { BusinessService } from "./business.service";
         NgZorroAntdModule,
         DatePickerModule,
         ZqSelectModule,
-        ZqSearchBtnModule
+        ZqSearchBtnModule,
+        ZqGridModule
     ],
     declarations:[
         BusinessComponent,

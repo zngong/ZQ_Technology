@@ -10,7 +10,7 @@ import { ZqSpinComponent } from './spin.component'
 @NgModule({
   imports:      [
      CommonModule, 
-     NgZorroAntdModule.forRoot(),
+     NgZorroAntdModule,
   ],
   declarations: [
     ZqSpinComponent
