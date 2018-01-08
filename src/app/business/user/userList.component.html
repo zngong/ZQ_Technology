@@ -29,8 +29,6 @@
     </div>
     <!-- 查询结果展示区域 -->
     <div class="zq-content-panel">
-         开始时间：<span>{{startDate}}</span>
-         结束时间：<span>{{endDate}}</span>
-         状态：<span>{{userStatus}}</span>
+        <zq-grid [gridRowData]="rowData" [gridColumnDefs]="columnDefs" [gridColumnType]="columnType" [gridPagination]="true"></zq-grid>
     </div>
 </div>
