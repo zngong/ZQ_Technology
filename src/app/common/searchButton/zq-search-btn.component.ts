@@ -14,7 +14,6 @@ import { Component ,Input ,OnInit,Output,EventEmitter} from '@angular/core';
      <span *ngIf="!expandMore">收起</span>
     <i class="anticon moreBtnIcon" [ngClass]="{'anticon-down':expandMore==true,'anticon-up':expandMore==false}"></i>
   </button>
-    
   `,
   styles  : [
     `
