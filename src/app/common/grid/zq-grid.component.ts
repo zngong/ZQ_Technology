@@ -19,6 +19,19 @@ import { ConfirmConfig } from '../modal/modal-config';
   rowHeight="22"
   rowSelection="multiple">
 </ag-grid-angular>
+ <div class='pagitionContainer'>
+    <div>
+      <button class="firstPageBtn"><i class="anticon anticon-step-backward"></i></button>
+      <button class="firstPageBtn"><i class="anticon anticon-caret-left"></i></button>
+    </div>
+    <div>
+      <a class="pageNum">1</a>
+    </div>
+    <div>
+      <button class="lastPageBtn"><i class="anticon anticon-caret-right"></i></button>
+      <button class="lastPageBtn"><i class="anticon anticon-step-forward"></i></button>
+    </div>
+ </div>
 ` ,
 styleUrls: ['./zq-grid.component.css'],
 })
@@ -30,7 +43,8 @@ export class ZqGridComponent implements OnInit{
     private gridOptions: GridOptions;
     constructor(public modalService:ModalService) {
               this.gridOptions = <GridOptions>{
-                  pagination:true
+                  pagination:true,
+                  suppressPaginationPanel:true
               };
               this.gridOptions.columnDefs =  [
                   {
