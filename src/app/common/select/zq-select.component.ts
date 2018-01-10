@@ -24,7 +24,6 @@ export class ZqSelectSearchComponent implements OnInit {
   currentSelect = {};
 
   ngOnInit() {
-    
     setTimeout(_ => {
         this.searchOptions = this.selectArry;
         this.selectedOption = this.searchOptions[0];

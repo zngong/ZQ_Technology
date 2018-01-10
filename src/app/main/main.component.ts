@@ -5,13 +5,11 @@ import { ModalService } from '../common/modal/modal.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfirmConfig } from '../common/modal/modal-config';
 import { MainService } from './main.service';
-import { AppReuseStrategy } from '../common/routeReuse/routeReuseStrategy';
 
 @Component({
   selector: 'zq-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
-  providers:[AppReuseStrategy]
 })
 export class MainComponent implements OnInit {
   isCollapsed = false;//默认展开菜单
@@ -20,8 +18,7 @@ export class MainComponent implements OnInit {
   seleceTabIndex:Number;
   currentTab;
   tabArray:Array<any> = [];
-  constructor(private router:Router,private modalService:ModalService,private mainService:MainService,
-     private appReuseStrategy: AppReuseStrategy) {
+  constructor(private router:Router,private modalService:ModalService,private mainService:MainService) {
         
    }
   //菜单初始化

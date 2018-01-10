@@ -1,6 +1,7 @@
 import { CommonModule }       from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ModalService } from '../modal/modal.service';
 import { AgGridModule } from 'ag-grid-angular/main';
 import { ZqGridComponent } from './zq-grid.component';
 
@@ -15,6 +16,6 @@ import { ZqGridComponent } from './zq-grid.component';
     AgGridModule.withComponents([])
   ],
   exports:[ZqGridComponent],
-  providers:[]
+  providers:[ModalService]
 })
 export class ZqGridModule { }
