@@ -2,8 +2,9 @@ import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'zq-select-search',
-  template: `
-    <nz-select style="width: 100px;" [nzPlaceHolder]="placeholder" 
+  template: `  
+    <nz-select [ngStyle]="optionstyle"
+    [nzPlaceHolder]="placeholder" 
     [(ngModel)]="selectedOption" nzShowSearch  (nzOpenChange)="optionChange($event)">
       <nz-option
         *ngFor="let option of searchOptions"
@@ -19,6 +20,7 @@ export class ZqSelectSearchComponent implements OnInit {
  @Input()placeholder;
  @Input()selectArry:Array<any>;
  @Output()selectCallBack = new  EventEmitter();
+ @Input() optionstyle;
   selectedOption;
   searchOptions;
   currentSelect = {};
