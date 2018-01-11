@@ -41,7 +41,6 @@
       <nz-content style="margin:0 16px;display: flex;flex: 1;flex-direction: column;">
         <zq-tabs-operation [currentTab]="currentTab" (closeTabs)="closeTab($event)" (clickEvents)="clickTag($event)"  [tabList]="tabArray"></zq-tabs-operation>
         <div style="padding-top:10px; background: #fff; min-height: 360px;height:100%">
-            <!-- <zq-date-picker></zq-date-picker> -->
             <router-outlet></router-outlet>
         </div>
       </nz-content>

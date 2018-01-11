@@ -5,6 +5,9 @@
   vertical-align: middle;
   margin-right: 15px;
 }
+.zq-container {
+    height: 100%
+  }
 .zq-container .zq-search-showPart {
     margin-left: 20px;
     width: calc(100% - 60px);
@@ -22,7 +25,10 @@
 }
 .zq-container .zq-content-panel{
     margin-left: 20px;
-    width: calc(100% - 60px);
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    position: relative;
+    height: calc(100% - 83px);
 }
 .zq-search-panel .context-title{
     display: inline-block;

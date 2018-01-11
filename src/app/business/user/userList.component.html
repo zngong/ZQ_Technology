@@ -11,7 +11,7 @@
             <div class="search-group">
                 <p class="context-title">状态:</p>
                 <div class="context-content">
-                  <zq-select-search (selectCallBack)="getStatus($event)" [placeholder]="'请选择状态'" [selectArry]="statusList"></zq-select-search>
+                  <zq-select-search (selectCallBack)="getStatus($event)" [optionstyle]="optionsStyle" [placeholder]="'请选择状态'" [selectArry]="statusList"></zq-select-search>
                 </div>
             </div>
             <div class="search-group">
@@ -29,6 +29,6 @@
     </div>
     <!-- 查询结果展示区域 -->
     <div class="zq-content-panel">
-        <zq-grid #myGrid [gridRowData]="rowData" [gridColumnDefs]="columnDefs" [gridColumnType]="columnType" [gridPagination]="true"></zq-grid>
+        <zq-grid #myGrid [gridOption]="gridOption"></zq-grid>
     </div>
 </div>

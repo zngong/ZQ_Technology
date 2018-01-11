@@ -22,6 +22,8 @@ import { RightListComponent } from "./right/rightList.component";
  * service
  */
 import { BusinessService } from "./business.service";
+import { ModalService } from '../common/modal/modal.service';
+
 @NgModule({
     imports:[
         CommonModule,
@@ -39,7 +41,7 @@ import { BusinessService } from "./business.service";
         RightListComponent,
     ],
     exports:[],
-    providers:[BusinessService],
+    providers:[BusinessService,ModalService],
     bootstrap: [BusinessComponent]
 })
 export class BusinessModule {}

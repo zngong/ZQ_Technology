@@ -20,6 +20,16 @@
     border-radius: 3px;
     float: left
 }
+.pagitionContainer .pageNum:hover{
+    box-sizing: content-box;
+    border-color: #999;
+    background: #e8e8e8;
+}
+.pagitionContainer .currentPage{
+    box-sizing: content-box;
+    border-color: #999;
+    background: #d1d1d1;
+}
 .pagitionContainer .firstPageBtn{
     padding: 0px;
     margin-top: 0px;
@@ -37,4 +47,37 @@
     width: 27px;
     float: left;
     cursor: pointer;
+}
+.pagitionContainer .targrtPge{
+    float: left;
+    margin-left: 15px;
+}
+.pagitionContainer .targrtPge input{
+    width: 45px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+}
+.pagitionContainer .fl{
+    float: left;
+}
+.pagitionContainer .fr{
+    float: right;
+}
+.pagitionContainer .targrtPge button{
+    padding: 0px;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 3px;
+    width: 27px;
+    float: left;
+    cursor: pointer;
+}
+.pagitionContainer .pageSizeOption{
+    margin-left: 15px;
+}
+.pagitionContainer .pageSizeOption span{
+    line-height: 25px;
+    margin-left: 5px;
 }

@@ -8,173 +8,178 @@ import { ConfirmConfig } from '../modal/modal-config';
 @Component({
   selector: 'zq-grid',
   template:`
-  <ag-grid-angular style="width: 100%; height: 250px;" class="ag-fresh"
-  [gridOptions]="gridOptions"
-  [columnDefs]="columnDefs"
-  [showToolPanel]="showToolPanel"
-  [rowData]="rowData"
-  enableColResize
-  enableSorting
-  enableFilter
-  rowHeight="22"
-  rowSelection="multiple">
-</ag-grid-angular>
- <div class='pagitionContainer'>
-    <div>
-      <button class="firstPageBtn"><i class="anticon anticon-step-backward"></i></button>
-      <button class="firstPageBtn"><i class="anticon anticon-caret-left"></i></button>
+  <div style="height:100%">
+      <div [ngStyle]="style">
+          <ag-grid-angular style="width: 100%; height: 100%;" class="ag-fresh"
+          [gridOptions]="gridOption"
+          [showToolPanel]="showToolPanel"
+          enableColResize
+          enableSorting
+          enableFilter
+          rowHeight="22"
+          (gridReady)="onGridReady($event)"
+          rowSelection="multiple">
+        </ag-grid-angular>
     </div>
-    <div>
-      <a class="pageNum">1</a>
+    <div class='pagitionContainer' *ngIf="gridOption.pagination">
+        <div class="fl">
+          <button class="firstPageBtn" (click)="goToFirst()"><i class="anticon anticon-step-backward"></i></button>
+          <button class="firstPageBtn" (click)="goToPrevious()"><i class="anticon anticon-caret-left"></i></button>
+        </div>
+        <div  class="fl">
+          <a class="pageNum" [ngClass]="{'currentPage':currentPageNum == pageNum}" *ngFor="let pageNum of pageNumList" (click)="goToPage(pageNum)">{{pageNum}}</a>
+        </div>
+        <div  class="fl">
+          <button class="lastPageBtn" (click)="goToNext()"><i class="anticon anticon-caret-right"></i></button>
+          <button class="lastPageBtn" (click)="goToLast()"><i class="anticon anticon-step-forward"></i></button>
+        </div>
+        <div class="fl targrtPge">
+        <span  class="fl">Go To</span>
+        <input type="nuber"  class="fl" [(ngModel)]="targetNum">
+        <span  class="fl">/{{totalPage}}</span>
+        <button  class="fl"><i class="anticon anticon-arrow-right" (click)="goToPage(targetNum)"></i></button>
+        </div>
+        <div class="fl pageSizeOption">
+          <zq-select-search [optionstyle]="optionsStyle" (selectCallBack)="getPageSize($event)" [placeholder]="'choose option'" [selectArry]="pageSizeOption"></zq-select-search>
+          <span class="fr">items per page</span>
+        </div>    
     </div>
-    <div>
-      <button class="lastPageBtn"><i class="anticon anticon-caret-right"></i></button>
-      <button class="lastPageBtn"><i class="anticon anticon-step-forward"></i></button>
-    </div>
- </div>
+  </div>
+ 
 ` ,
 styleUrls: ['./zq-grid.component.css'],
 })
 export class ZqGridComponent implements OnInit{
-    @Input()gridRowData;
-    @Input()gridColumnDefs;
-    @Input()gridColumnType;
-    @Input()gridPagination;
-    private gridOptions: GridOptions;
+    @Input()gridOption;
+    pageNumList;
+    currentPageNum;
+    totalPage;
+    targetNum;
+    pageSizeOption;
+    selectedOption;
+    style = {
+      marginTop: '20px',
+      width: '100%',
+      height: '100%',
+      boxSizing: 'border-box'
+  };
+  optionsStyle = {
+    width:'50px',
+  }
     constructor(public modalService:ModalService) {
-              this.gridOptions = <GridOptions>{
-                  pagination:true,
-                  suppressPaginationPanel:true
-              };
-              this.gridOptions.columnDefs =  [
-                  {
-                    headerName: '',
-                    field: 'checkBox',
-                    width: 30,
-                    pinned: 'left',
-                    checkboxSelection: function (params) {
-                      // we put checkbox on the name if we are not doing grouping
-                      return params.columnApi.getRowGroupColumns().length === 0;
-                    },
-                    headerCheckboxSelection: function (params) {
-                      // we put checkbox on the name if we are not doing grouping
-                      return params.columnApi.getRowGroupColumns().length === 0;
-                    }
-                  },
-                  {
-                    headerName: '序号',
-                    field: 'no',
-                    width: 50,
-                    pinned: 'left',
-                    cellRenderer: function(params) {
-                      var index = params.node.id*1 + 1
-                      return index.toString();
-                    },
-                  },
-                  {
-                      headerName: '姓名',
-                      field: 'name',
-                      filter: 'text',
-                      width: 100,
-                      pinned: 'left',
-                    },
-                  {
-                    headerName: '性别',
-                    field: 'sex',
-                    filter: 'text',
-                    width: 50,
-                  },
-                  {
-                    headerName: '年龄',
-                    field: 'age',
-                    filter: 'text',
-                    width: 50,
-                    marryChildren: true,
-                    children: [
-                      {headerName: '出生年月', field: 'birthday', columnGroupShow: 'null', type: ['dateColumn', 'nonEditableColumn']},
-                      {headerName: 'Gold', field: 'bronze', columnGroupShow: 'null'},
-                      {headerName: 'Constellation', field: 'constellation', columnGroupShow: 'null'}
-                    ]
-                  },
-                  {
-                    headerName: '电话',
-                    field: 'tele',
-                    filter: 'text',
-                    width: 200,
-                    editable: true,
-                  },
-                  {
-                    headerName: '地址',
-                    field: 'address',
-                    filter: 'text',
-                    width: 400,
-                    editable: true,
-                  },
-                  {
-                    headerName: '操作',
-                    field: 'operat',
-                    width: 300,
-                    pinned: 'right',
-                    cellRenderer:operateCellRenderer,
-                  }
-                ];
-                this.gridOptions.rowData =  [
-                  {id: 1, name: '张三', sex: '女', age: '20', birthday: '1993-05-20', tele: '13564569874', address: '海淀区农大南路'},
-                  {id: 2, name: '李四', sex: '男', age: '40', birthday: '1992-08-18', tele: '15647893214', address: '丰台区'},
-                  {id: 3, name: '小明', sex: '男', age: '20', birthday: '2011-02-01', tele: '17788770858', address: '哈尔滨市南岗区'},
-                  {id: 4, name: '晓红', sex: '女', age: '25', birthday: '1978-11-20', tele: '18945620145', address: '北京西路的日子'},
-                  {id: 5, name: '老王', sex: '男', age: '30', birthday: '1997-07-08', tele: '13645713276', address: '中关村软件园'},
-                  {id: 6, name: '柜子', sex: '男', age: '35', birthday: '1999-03-15', tele: '18745016324', address: '海淀区后厂村路'},
-                ]
-                this.gridOptions.columnTypes = {
-                  'numberColumn': {width: 83, filter: 'number'},
-                  'medalColumn': {width: 100, columnGroupShow: 'open', suppressFilter: true},
-                  'nonEditableColumn': {editable: false},
-                  'dateColumn': {
-                    filter: 'date',
-                    filterParams: {
-                      comparator: function (filterLocalDateAtMidnight, cellValue) {
-                        const dateParts = cellValue.split('-');
-                        const day = Number(dateParts[2]);
-                        const month = Number(dateParts[1]) - 1;
-                        const year = Number(dateParts[0]);
-                        const cellDate = new Date(year, month, day );
-                        if (cellDate < filterLocalDateAtMidnight) {
-                          return -1;
-                        } else if (cellDate > filterLocalDateAtMidnight) {
-                          return 1;
-                        } else {
-                          return 0;
-                        }
-                      }
-                    }
-                  }
-                };                    
-                function operateCellRenderer(params) {
-                  var eSpan = document.createElement('div');
-                  eSpan.setAttribute('class','zq-grid-row-btns');
-                  eSpan.innerHTML =`<i class="anticon anticon-plus-square-o ml10" title="新增"></i>
-                                    <i class="anticon anticon-edit ml10" title="修改"></i>
-                                    <i class="anticon anticon-delete ml10" title="删除"></i>`;
-                  var nodeList = eSpan.childNodes;
-                  var lastNode = nodeList[nodeList.length-1]  
-                  lastNode.addEventListener('click', function () {
-                    doDelete(params)
-                  });
-                  return eSpan;
-              }
-              function doDelete(event){
-                let exitSysCfg = new ConfirmConfig('您确定删除该用户吗？','');
-                modalService.confirm(exitSysCfg).then((result) => {
-                  if(result == 'OK'){
-                    console.log("=====执行删除操作======")
-                  }
-                });
-              }
-
-        }
+     
+     
+    }
     ngOnInit(){
-       
+      this.pageSizeOption = [
+        { value: 10, label: '10' },
+        { value: 15, label: '15' },
+        { value: 20, label: '20' },
+        { value: 25, label: '25' },
+        { value: 30, label: '30' },
+        { value: 35, label: '35' }
+      ]
+      var columns = [] 
+      var index = {
+        headerName: '序号',
+        field: 'no',
+        width: 50,
+        pinned: 'left',
+        cellRenderer: function(params) {
+          var index = params.node.id*1 + 1
+          return index.toString();
+        },
+        cellStyle: function(params) {
+          return {'text-align': 'center'};
+        }
+      }
+      var select = {
+        headerName: '',
+        field: 'checkBox',
+        width: 30,
+        pinned: 'left',
+        cellStyle: function(params) {
+          return {'text-align': 'center'};
+        },
+        checkboxSelection: function (params) {
+          return params.columnApi.getRowGroupColumns().length === 0;
+        },
+        headerCheckboxSelection: function (params) {
+          return params.columnApi.getRowGroupColumns().length === 0;
+        }
+      }
+      if(this.gridOption.gridSelect){
+        columns = [index,select];
+      } else{
+        columns = [index];
+      }
+      this.gridOption.columnDefs = columns.concat(this.gridOption.columnDefs);
+    }
+    
+    //第一页
+    goToFirst() {
+      this.gridOption.api.paginationGoToFirstPage();
+      this.onGridReady("other");
+    }
+    //最后一页
+    goToLast() {
+      this.gridOption.api.paginationGoToLastPage();
+      this.onGridReady("other");
+    }
+    //下一页
+    goToNext() {
+      this.gridOption.api.paginationGoToNextPage();
+      this.onGridReady("next");
+    }
+    //上一页
+    goToPrevious() {
+      this.gridOption.api.paginationGoToPreviousPage();
+      this.onGridReady("previous");
+    }
+    //去某一页
+    goToPage(pageNum) {
+      this.gridOption.api.paginationGoToPage(parseInt(pageNum)-1);
+      this.onGridReady("other");
+    }
+    //表格加载完成的时候初始化分页，或者重新绘画分页
+    onGridReady(params) {
+      if(params.type == "gridReady" || params.type == "initPage"){
+        this.pageNumList= [];
+      }
+      this.totalPage = this.gridOption.api.paginationGetTotalPages();
+      this.currentPageNum = this.gridOption.api.paginationGetCurrentPage()+1;
+      if(this.pageNumList.indexOf(this.currentPageNum)==-1){
+        var value = this.currentPageNum%5;
+         if(params == "next" || params.type == "gridReady" || params.type == "initPage"){//如果是下一页、修改pageSize或者表格刚初始化完成的时候
+            if(params == "next"){
+              this.pageNumList.splice(0,1);
+              this.pageNumList.push(this.currentPageNum);
+            }else{
+              for(let i=this.currentPageNum - value+1;(i<=this.currentPageNum - value+5 && i<=this.totalPage);i++){
+                this.pageNumList.push(i);    
+              }
+            }
+         }else if(params == "previous"){//上一页
+           this.pageNumList.splice(4,1);
+           this.pageNumList.unshift(this.currentPageNum);    
+         }else{//其它 （第一页，最后一页，某一页）
+           this.pageNumList = [];
+           if(this.currentPageNum == 1){
+            this.pageNumList = [1,2,3,4,5];
+           }else{
+            for(let i=this.currentPageNum - 4;(i>this.currentPageNum - 5 && i<=this.totalPage);i++){
+              this.pageNumList.push(i);    
+            }
+           }
+         }
+      } 
+    }
+    //获取pageSize
+    getPageSize(event){
+      this.targetNum = '';
+      this.gridOption.api.paginationSetPageSize(event.value)
+      this.totalPage = this.gridOption.api.paginationGetTotalPages();
+      this.onGridReady({type:"initPage"})
     }
   
    
