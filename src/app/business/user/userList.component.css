@@ -25,16 +25,24 @@
 }
 .zq-container .zq-content-panel{
     margin-left: 20px;
+    margin-top: 10px;
     -webkit-box-flex: 1;
     flex-grow: 1;
     position: relative;
-    height: calc(100% - 83px);
+    height: calc(100% - 100px);
+}
+.zq-container .zq-content-panel .gridOperateArea{
+    width: 100%;
+    background-color: #efefef;
+    height: 28px;
+}
+.zq-container .gridOperateArea .operateBtn{
+    float: right;
 }
 .zq-search-panel .context-title{
     display: inline-block;
     font-weight: bold;
 }
-
 .zq-search-panel .context-content{
     display: inline-block;
 }

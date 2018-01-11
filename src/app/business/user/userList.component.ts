@@ -16,7 +16,7 @@ import { ConfirmConfig } from '../../common/modal/modal-config';
   styleUrls: ['./userList.component.css']
 })
 export class UserListComponent implements OnInit {
-  @ViewChild('myGrid') private myChild: ZqGridComponent;
+  @ViewChild('myGrid') myGrid: ZqGridComponent;
   startDate:"";
   endDate:"";
   userStatus;
@@ -52,7 +52,10 @@ export class UserListComponent implements OnInit {
       pagination:true,
       suppressPaginationPanel:true,
       gridSelect:true,
-      animateRows:true
+      animateRows:true,
+      fileName:"用户列表",
+      allColumns:true,
+      columnGroups:true,
     };
     this.gridOption.columnDefs =  [
         {
@@ -73,13 +76,10 @@ export class UserListComponent implements OnInit {
           field: 'age',
           filter: 'text',
           width: 50,
-          marryChildren: true,
-          children: [
-            {headerName: '出生年月', field: 'birthday', columnGroupShow: 'null', type: ['dateColumn', 'nonEditableColumn']},
-            {headerName: 'Gold', field: 'bronze', columnGroupShow: 'null'},
-            {headerName: 'Constellation', field: 'constellation', columnGroupShow: 'null'}
-          ]
         },
+        {headerName: '出生年月', field: 'birthday', columnGroupShow: 'null', type: ['dateColumn', 'nonEditableColumn']},
+        {headerName: 'Gold', field: 'bronze', columnGroupShow: 'null'},
+        {headerName: 'Constellation', field: 'constellation', columnGroupShow: 'null'},
         {
           headerName: '电话',
           field: 'tele',
@@ -199,6 +199,9 @@ doDelete(event){
   //更多(true)收起(false)
   doExpandMore(event){
     this.moreStatus = event;
+  }
+  doExport(){
+    this.myGrid.doExport();
   }
 
 

@@ -58,7 +58,6 @@ export class ZqGridComponent implements OnInit{
     pageSizeOption;
     selectedOption;
     style = {
-      marginTop: '20px',
       width: '100%',
       height: '100%',
       boxSizing: 'border-box'
@@ -180,6 +179,20 @@ export class ZqGridComponent implements OnInit{
       this.gridOption.api.paginationSetPageSize(event.value)
       this.totalPage = this.gridOption.api.paginationGetTotalPages();
       this.onGridReady({type:"initPage"})
+    }
+    doExport(){
+      var params = {
+        skipHeader: false,
+        columnGroups: true,
+        skipFooters: false,
+        skipGroups: false,
+        skipPinnedTop:false,
+        skipPinnedBottom: false,
+        allColumns: false,
+        onlySelected: false,
+        fileName: this.gridOption.fileName
+      };
+      this.gridOption.api.exportDataAsExcel(params);
     }
   
    

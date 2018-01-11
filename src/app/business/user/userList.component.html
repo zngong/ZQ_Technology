@@ -29,6 +29,16 @@
     </div>
     <!-- 查询结果展示区域 -->
     <div class="zq-content-panel">
+        <div class="gridOperateArea">
+            <div class="operateBtn">
+                    <nz-button-group>
+                            <button nz-button [nzType]="'primary'">新增</button>
+                            <button nz-button [nzType]="'primary'">审核</button>
+                            <button nz-button [nzType]="'primary'">删除</button>
+                            <button nz-button [nzType]="'primary'" (click)="doExport()">导出</button>
+                    </nz-button-group>
+            </div> 
+        </div>
         <zq-grid #myGrid [gridOption]="gridOption"></zq-grid>
     </div>
 </div>
