@@ -17,6 +17,7 @@ import { ZqGridModule } from '../common/grid/zq-grid.module';
 import { UserListComponent } from "./user/userList.component";
 import { RoleListComponent } from "./role/roleList.component";
 import { RightListComponent } from "./right/rightList.component";
+import { AddUserComponent } from "./user/addUser.component"
 
 /**
  * service
@@ -39,8 +40,9 @@ import { ModalService } from '../common/modal/modal.service';
         UserListComponent,
         RoleListComponent,
         RightListComponent,
+        AddUserComponent
     ],
-    exports:[],
+    exports:[AddUserComponent],
     providers:[BusinessService,ModalService],
     bootstrap: [BusinessComponent]
 })

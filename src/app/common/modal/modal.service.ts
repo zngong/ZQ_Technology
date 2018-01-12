@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {ConfirmConfig} from './modal-config';
+import { ConfirmConfig } from './modal-config';
+import { DialogConfig } from './modal-config';
 import { NzModalService } from 'ng-zorro-antd';
 /**
  * 模块框服务
@@ -24,6 +25,28 @@ export class ModalService {
             });
             return promise;
         
+    }
+    //弹出框<使用模板>
+    open(config): Promise<any> {
+          var promise = new Promise((resolve, reject) => {
+            const subscription = this.modalService.open({
+                title: config.title,
+                content: '',
+                onOk() {
+                    // resolve('OK');
+                },
+                onCancel() {
+                    // resolve('CANCWL');
+                },
+                footer         : false,
+                componentParams: config.param
+              });
+              subscription.subscribe(result => {
+                // if()
+                console.log(result);
+              })
+            });
+          return promise
     }
         
 

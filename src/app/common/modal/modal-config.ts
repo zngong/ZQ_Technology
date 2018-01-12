@@ -20,3 +20,26 @@ export class ConfirmConfig{
    }
 
 }
+export class DialogConfig{
+    title:string;
+    content;
+    param:object;
+  
+   constructor(title:string='',content,param:object={}){
+       this.title= title;
+       this.content=content;
+   }
+   
+   
+   getTitle(): string {
+       return this.title;
+   }
+
+   getContent():string{
+      return this.content;
+   }
+   getParam():object{
+       return this.param;
+   }
+
+}

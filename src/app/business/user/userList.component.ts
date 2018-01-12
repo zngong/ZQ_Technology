@@ -6,7 +6,8 @@ import { ZqGridComponent } from '../../common/grid/zq-grid.component'
 import * as moment from 'moment';
 import {GridOptions} from 'ag-grid';
 import { ModalService } from '../../common/modal/modal.service';
-import { ConfirmConfig } from '../../common/modal/modal-config';
+import { ConfirmConfig ,DialogConfig} from '../../common/modal/modal-config';
+import { AddUserComponent } from './addUser.component'
 
 
 
@@ -58,49 +59,18 @@ export class UserListComponent implements OnInit {
       columnGroups:true,
     };
     this.gridOption.columnDefs =  [
-        {
-            headerName: '姓名',
-            field: 'name',
-            filter: 'text',
-            width: 100,
-            pinned: 'left',
-          },
-        {
-          headerName: '性别',
-          field: 'sex',
-          filter: 'text',
-          width: 50,
+        {headerName: '姓名',field: 'name',filter: 'text',width: 100,pinned: 'left'},
+        {headerName: '性别',field: 'sex',filter: 'text', width: 50},
+        {headerName: '年龄',field: 'age',filter: 'text',width: 50,marryChildren: true,
+          children: [
+            {headerName: '出生年月', field: 'birthday', columnGroupShow: 'null', type: ['dateColumn', 'nonEditableColumn']},
+            {headerName: 'Gold', field: 'bronze', columnGroupShow: 'null'},
+            {headerName: 'Constellation', field: 'constellation', columnGroupShow: 'null'}
+          ]
         },
-        {
-          headerName: '年龄',
-          field: 'age',
-          filter: 'text',
-          width: 50,
-        },
-        {headerName: '出生年月', field: 'birthday', columnGroupShow: 'null', type: ['dateColumn', 'nonEditableColumn']},
-        {headerName: 'Gold', field: 'bronze', columnGroupShow: 'null'},
-        {headerName: 'Constellation', field: 'constellation', columnGroupShow: 'null'},
-        {
-          headerName: '电话',
-          field: 'tele',
-          filter: 'text',
-          width: 200,
-          editable: true,
-        },
-        {
-          headerName: '地址',
-          field: 'address',
-          filter: 'text',
-          width: 400,
-          editable: true,
-        },
-        {
-          headerName: '操作',
-          field: 'operat',
-          width: 300,
-          pinned: 'right',
-          cellRenderer:this.operateCellRenderer,
-        }
+        {headerName: '电话',field: 'tele',filter: 'text',width: 200,editable: true},
+        {headerName: '地址',field: 'address',filter: 'text',width: 400,editable: true},
+        {headerName: '操作', field: 'operat',width: 300,pinned: 'right',cellRenderer:this.operateCellRenderer}
       ];
       this.gridOption.rowData =  [
         {id: 1, name: '张三', sex: '女', age: '20', birthday: '1993-05-20', tele: '13564569874', address: '海淀区农大南路'},
@@ -202,6 +172,18 @@ doDelete(event){
   }
   doExport(){
     this.myGrid.doExport();
+  }
+  //新增
+  doAddUser(){
+    var param = {
+      name:'张三'
+    }
+    let config = new DialogConfig('新增用户',AddUserComponent,param);
+    this.modalService.open(config).then((result) => {
+      if(result == 'OK'){
+        console.log("=====新增成功======")
+      }
+    });
   }
 
 
