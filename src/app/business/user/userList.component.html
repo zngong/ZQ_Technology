@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="search-group">
-                <zq-search-button [moreBtn]="true" (doQuery)="doQuery($event)" (doReset)="doReset($event)" (doExpandMore)="doExpandMore($event)"></zq-search-button>
+                <zq-search-button [moreBtn]="true" (doQuery)="doAddUser($event)" (doReset)="doReset($event)" (doExpandMore)="doExpandMore($event)"></zq-search-button>
             </div>
         </div>
         <div *ngIf="!moreStatus" class="more-condition">
