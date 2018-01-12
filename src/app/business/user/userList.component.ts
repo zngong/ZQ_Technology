@@ -8,6 +8,8 @@ import {GridOptions} from 'ag-grid';
 import { ModalService } from '../../common/modal/modal.service';
 import { ConfirmConfig ,DialogConfig} from '../../common/modal/modal-config';
 import { AddUserComponent } from './addUser.component'
+import { NzModalService } from 'ng-zorro-antd';
+import { RightListComponent } from "../right/rightList.component";
 
 
 
@@ -178,12 +180,19 @@ doDelete(event){
     var param = {
       name:'张三'
     }
-    let config = new DialogConfig('新增用户',AddUserComponent,param);
-    this.modalService.open(config).then((result) => {
-      if(result == 'OK'){
-        console.log("=====新增成功======")
-      }
-    });
+
+    let config = {
+                title: '新增用户',
+                content: AddUserComponent,
+                onOk() {},
+                onCancel() {},
+                footer         : false,
+                componentParams: param
+              };
+    const subscription = this.modalService.open(config)
+    subscription.subscribe(result => {
+      console.log(result);
+    })
   }
 
 

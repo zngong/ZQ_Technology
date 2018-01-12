@@ -27,26 +27,8 @@ export class ModalService {
         
     }
     //弹出框<使用模板>
-    open(config): Promise<any> {
-          var promise = new Promise((resolve, reject) => {
-            const subscription = this.modalService.open({
-                title: config.title,
-                content: '',
-                onOk() {
-                    // resolve('OK');
-                },
-                onCancel() {
-                    // resolve('CANCWL');
-                },
-                footer         : false,
-                componentParams: config.param
-              });
-              subscription.subscribe(result => {
-                // if()
-                console.log(result);
-              })
-            });
-          return promise
+    open(config){
+        return this.modalService.open(config);
     }
         
 

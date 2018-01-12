@@ -5,7 +5,7 @@ import { NzModalSubject } from 'ng-zorro-antd';
   selector: 'nz-demo-component',
   template: `
     <div>
-      <h4>{{_name}}</h4>
+    <h4>{{_name}}</h4>
       <br/>
       <p>可以通过Subject传递数据</p>
       <div class="customize-footer">
@@ -46,7 +46,7 @@ export class AddUserComponent implements OnInit {
   ngOnInit() {
   }
   emitDataOutside() {
-    this.subject.next('传出数据');
+    this.subject.next('OK');
   }
 
   handleCancel(e) {
