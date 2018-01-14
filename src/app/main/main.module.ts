@@ -4,7 +4,7 @@ import { FormsModule }        from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainComponent }   from './main.component';
 import { MainRoutingModule } from './main-routing.module';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NgZorroAntdModule ,NZ_NOTIFICATION_CONFIG} from 'ng-zorro-antd';
 import { ModalService } from '../common/modal/modal.service';
 import { ZqTabsComponent } from '../common/tabs/tabs.component';
 import { SpinModule } from '../common/spin/spin.module';
@@ -27,7 +27,7 @@ import { MainService } from './main.service';
      ZqTabsComponent,
   ],
   exports:      [],
-  providers:    [ModalService,AppService,MainService],
+  providers:    [ModalService,AppService,MainService,{ provide: NZ_NOTIFICATION_CONFIG, useValue: { nzTop: '5%',nzRight: '40%',nzDuration: 1500,nzMaxStack: 7,nzPauseOnHover: true,nzAnimate: true } }],
   bootstrap: [MainComponent]
 })
 export class MainModule {

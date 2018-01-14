@@ -27,8 +27,16 @@ export class ModalService {
         
     }
     //弹出框<使用模板>
-    open(config){
-        return this.modalService.open(config);
+    open(config): Promise<any> {
+        var promise = new Promise((resolve, reject) => {
+           this.modalService.open(config).subscribe(result => {
+            if(result == 'OK'){
+                resolve(result);
+            }
+          });
+        });
+        return promise;
+        
     }
         
 

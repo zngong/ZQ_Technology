@@ -47,6 +47,7 @@ export class AddUserComponent implements OnInit {
   }
   emitDataOutside() {
     this.subject.next('OK');
+    this.subject.destroy('onOk');
   }
 
   handleCancel(e) {

@@ -10,13 +10,14 @@ import { ConfirmConfig ,DialogConfig} from '../../common/modal/modal-config';
 import { AddUserComponent } from './addUser.component'
 import { NzModalService } from 'ng-zorro-antd';
 import { RightListComponent } from "../right/rightList.component";
+import {NzNotificationService} from 'ng-zorro-antd';
 
 
 
 @Component({
   selector: 'zq-user-userList',
   templateUrl: './userList.component.html',
-  styleUrls: ['./userList.component.css']
+  styleUrls: ['./userList.component.css'],
 })
 export class UserListComponent implements OnInit {
   @ViewChild('myGrid') myGrid: ZqGridComponent;
@@ -32,7 +33,7 @@ export class UserListComponent implements OnInit {
     width:'100px',
   }
   private gridOption: GridOptions;
-  constructor(private router: Router,private msgService:NzMessageService,public modalService:ModalService) {
+  constructor(private router: Router,private msgService:NzMessageService,public modalService:ModalService,private notificService:NzNotificationService) {
        
   }
    
@@ -143,10 +144,26 @@ export class UserListComponent implements OnInit {
 }
 //删除操作
 doDelete(event){
-  let exitSysCfg = new ConfirmConfig('您确定删除该用户吗？','');
+  let exitSysCfg = new ConfirmConfig('您确定批量删除用户吗？','');
+  var selectedData = this.gridOption.api.getSelectedRows();
+  if(selectedData.length == 0){
+    this.notificService.create('info', '温馨提示', '请选择要删除的用户！');
+    return
+  }
   this.modalService.confirm(exitSysCfg).then((result) => {
     if(result == 'OK'){
-      console.log("=====执行删除操作======")
+      
+      console.log("====selectedData=====",selectedData)
+      var res = this.gridOption.api.updateRowData({ remove: selectedData });
+    }
+  });
+}
+//审核操作
+doCheck(event){
+  let exitSysCfg = new ConfirmConfig('您确定进行批量审核吗？','');
+  this.modalService.confirm(exitSysCfg).then((result) => {
+    if(result == 'OK'){
+      console.log("=====执行批量审核操作======")
     }
   });
 }
@@ -186,14 +203,15 @@ doDelete(event){
                 content: AddUserComponent,
                 onOk() {},
                 onCancel() {},
+                maskClosable:false,
                 footer         : false,
                 componentParams: param
               };
-    const subscription = this.modalService.open(config)
-    subscription.subscribe(result => {
-      console.log(result);
+    this.modalService.open(config).then((resp)=>{
+      if(resp == 'OK'){
+        console.log("===新增用户成功====",resp)
+      }
     })
+    
   }
-
-
 }

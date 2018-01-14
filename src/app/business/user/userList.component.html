@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="search-group">
-                <zq-search-button [moreBtn]="true" (doQuery)="doAddUser($event)" (doReset)="doReset($event)" (doExpandMore)="doExpandMore($event)"></zq-search-button>
+                <zq-search-button [moreBtn]="true" (doQuery)="doQuery($event)" (doReset)="doReset($event)" (doExpandMore)="doExpandMore($event)"></zq-search-button>
             </div>
         </div>
         <div *ngIf="!moreStatus" class="more-condition">
@@ -32,9 +32,9 @@
         <div class="gridOperateArea">
             <div class="operateBtn">
                     <nz-button-group>
-                            <button nz-button [nzType]="'primary'">新增</button>
-                            <button nz-button [nzType]="'primary'">审核</button>
-                            <button nz-button [nzType]="'primary'">删除</button>
+                            <button nz-button [nzType]="'primary'" (click)="doAddUser()">新增</button>
+                            <button nz-button [nzType]="'primary'" (click)="doCheck()">审核</button>
+                            <button nz-button [nzType]="'primary'" (click)="doDelete()">删除</button>
                             <button nz-button [nzType]="'primary'" (click)="doExport()">导出</button>
                     </nz-button-group>
             </div> 
