@@ -1,5 +1,6 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CanAdminProvide } from './app.loginAuth';
 
 
 /**
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
   { 
      path: 'main',  
      loadChildren: 'app/main/main.module#MainModule',
+     canActivate: [ CanAdminProvide ],
      data:{preload:true}
   }
 ];

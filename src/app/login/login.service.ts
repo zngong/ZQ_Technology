@@ -6,6 +6,8 @@ import {Observable} from 'rxjs/Rx';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { Md5 } from "ts-md5/dist/md5";
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { AppService } from '../../app/app.service'
 
 /**
@@ -16,7 +18,7 @@ export class LoginService {
     private menuSubject = new Subject<any>();
    
 
-    constructor(private http:Http,private appService:AppService) {
+    constructor(private http:Http,private appService:AppService,private _cookieService:CookieService) {
         
     }
 
@@ -31,11 +33,14 @@ export class LoginService {
             .subscribe(response =>{
                 if(response.result == 'true'){
                     resolve(response);
+                    this._cookieService.put("loginStatus","true");
                 }else{
+                    this._cookieService.put("loginStatus","false");
                     reject({retCode:'FAIL',retMsg:'登录失败！',result:response})
                 }
            }, (err) => {
                 reject({retCode:'FAIL',retMsg:'登录失败！',result:err})
+                this._cookieService.put("loginStatus","false");
            })
         });
           return promise;

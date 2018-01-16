@@ -13,6 +13,8 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
  */
 import { RouterModule ,RouteReuseStrategy} from "@angular/router";
 import { AppReuseStrategy } from './common/routeReuse/routeReuseStrategy';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CanAdminProvide } from './app.loginAuth'
 
 /**
  * service
@@ -34,7 +36,7 @@ import { MainService } from './main/main.service'
     NgZorroAntdModule.forRoot(),
     
   ],
-  providers:[{ provide: RouteReuseStrategy, useClass: AppReuseStrategy },MainService],
+  providers:[{ provide: RouteReuseStrategy, useClass: AppReuseStrategy },MainService,CookieService,CanAdminProvide],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

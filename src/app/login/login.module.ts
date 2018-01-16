@@ -8,7 +8,7 @@ import { LoginComponent }   from './login.component';
 import { SpinModule } from '../common/spin/spin.module';
 import { AppService } from '../app.service';
 import { LoginService } from './login.service';
-
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 
 
@@ -27,6 +27,6 @@ import { LoginService } from './login.service';
      LoginComponent,
   ],
   exports:      [],
-  providers:    [AppService,LoginService]
+  providers:    [AppService,LoginService,CookieService]
 })
 export class LoginModule { }

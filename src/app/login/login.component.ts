@@ -17,7 +17,9 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   spinStatus:boolean = false;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private loginService:LoginService,private msgService:NzMessageService) {
+  constructor(private router: Router, private formBuilder: FormBuilder, private loginService:LoginService,private msgService:NzMessageService
+                    ,private cookieService:CookieService) {
+    this.cookieService.put("loginStatus","false");                 
     let userNameFc = new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(15)]));
     let passwordFc = new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(15)]));
     this.loginForm = this.formBuilder.group({
