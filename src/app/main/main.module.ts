@@ -10,7 +10,7 @@ import { ZqTabsComponent } from '../common/tabs/tabs.component';
 import { SpinModule } from '../common/spin/spin.module';
 import { AppService } from '../app.service';
 import { MainService } from './main.service';
-import { CanAdminProvide } from '../../app/app.loginAuth';
+import { MainLoginAuth } from './main.loginAuth';
 /**
  * 主体模块
  */
@@ -28,7 +28,7 @@ import { CanAdminProvide } from '../../app/app.loginAuth';
      ZqTabsComponent,
   ],
   exports:      [],
-  providers:    [ModalService,AppService,MainService,CanAdminProvide,
+  providers:    [ModalService,AppService,MainService,MainLoginAuth,
     { provide: NZ_NOTIFICATION_CONFIG, useValue: { nzTop: '5%',nzRight: '40%',nzDuration: 1500,nzMaxStack: 7,nzPauseOnHover: true,nzAnimate: true } }],
   bootstrap: [MainComponent]
 })

@@ -3,27 +3,35 @@ import { CanActivate, Router, ActivatedRouteSnapshot,RouterStateSnapshot,
          CanActivateChild,NavigationExtras,CanLoad, Route}  from '@angular/router';
 import {Observable} from 'rxjs/Rx';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
-import {NzMessageService} from 'ng-zorro-antd';
+import {NzModalService} from 'ng-zorro-antd';
 
 
 @Injectable()
-export class CanAdminProvide implements CanActivate {
+export class MainLoginAuth implements CanActivate {
 
-    constructor(private cookieService: CookieService, private msg: NzMessageService) {}
+    constructor(private cookieService: CookieService, private modalMsg: NzModalService) {}
 
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
         return new Observable((observer) => {
             // 已登录
-            if (this.cookieService.get('loginStatus') !== 'true') {
+            if (this.cookieService.get('loginStatus') == 'true') {
                 observer.next(true);
                 observer.complete();
                 return;
             }
-            this.msg.error('请先登录!', {nzDuration: 3000});
-            observer.next(false);
-            observer.complete();
+            this.modalMsg.warning({
+                title: '温馨提示',
+                content: '当前会话已过期，请重新登录',
+                maskClosable:false,
+                onOk() {
+                    this.router.navigate(['/login']);
+                },
+                onCancel(){
+                    this.router.navigate(['/login']);
+                }
+              });
         });
     }
 

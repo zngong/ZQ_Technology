@@ -60,6 +60,9 @@ export class UserListComponent implements OnInit {
       fileName:"用户列表",
       allColumns:true,
       columnGroups:true,
+      // onColumnValueChanged = function(){
+        
+      // }
     };
     this.gridOption.columnDefs =  [
         {headerName: '姓名',field: 'name',filter: 'text',width: 100,pinned: 'left'},
@@ -128,6 +131,46 @@ export class UserListComponent implements OnInit {
         }
       };                    
   }
+//操作用户
+doOperate(param){
+  var selectedData = []
+  if(!param.data){
+    selectedData = this.gridOption.api.getSelectedRows();
+    param.message = '批量'+param.message;
+  }else{
+    selectedData = [param.data];
+  }
+  if(selectedData.length == 0 && event.type && event.type != 'single'){
+    this.notificService.create('info', '温馨提示', '请选择要'+param.message+'的用户！');
+    return
+  }
+  let exitSysCfg = new ConfirmConfig('您确定进行'+param.message+'吗？','');
+  this.modalService.confirm(exitSysCfg).then((result) => {
+    if(result == 'OK'){
+      if(param.type == 'delete'){
+        this.gridOption.api.updateRowData({ remove: selectedData });
+      }else{
+        //审核
+      }
+    }
+  });
+}
+//删除操作
+doDelete(event){
+  var param = {
+    type:'delete',
+    message:'删除'
+  };
+  this.doOperate(param);
+}
+//审核操作
+doCheck(event){
+  var param = {
+    type:'check',
+    message:'审核'
+  };
+  this.doOperate(param);
+}
   //表格操作列渲染
   operateCellRenderer(params) {
     var eSpan = document.createElement('div');
@@ -138,34 +181,9 @@ export class UserListComponent implements OnInit {
     var nodeList = eSpan.childNodes;
     var lastNode = nodeList[nodeList.length-1]  
     lastNode.addEventListener('click', function () {
-      this.doDelete(params)
+       console.log('====param=====',params.data)
     });
     return eSpan;
-}
-//删除操作
-doDelete(event){
-  let exitSysCfg = new ConfirmConfig('您确定批量删除用户吗？','');
-  var selectedData = this.gridOption.api.getSelectedRows();
-  if(selectedData.length == 0){
-    this.notificService.create('info', '温馨提示', '请选择要删除的用户！');
-    return
-  }
-  this.modalService.confirm(exitSysCfg).then((result) => {
-    if(result == 'OK'){
-      
-      console.log("====selectedData=====",selectedData)
-      var res = this.gridOption.api.updateRowData({ remove: selectedData });
-    }
-  });
-}
-//审核操作
-doCheck(event){
-  let exitSysCfg = new ConfirmConfig('您确定进行批量审核吗？','');
-  this.modalService.confirm(exitSysCfg).then((result) => {
-    if(result == 'OK'){
-      console.log("=====执行批量审核操作======")
-    }
-  });
 }
   //获取日期
   getDate(date){
@@ -190,7 +208,7 @@ doCheck(event){
     this.moreStatus = event;
   }
   doExport(){
-    this.myGrid.doExport();
+    // this.gridOption.api.doExport();
   }
   //新增
   doAddUser(){

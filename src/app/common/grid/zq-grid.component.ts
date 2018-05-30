@@ -18,6 +18,7 @@ import { ConfirmConfig } from '../modal/modal-config';
           enableFilter
           rowHeight="22"
           (gridReady)="onGridReady($event)"
+          (columnValueChanged)="onColumnValueChanged($event)"
           rowSelection="multiple">
         </ag-grid-angular>
     </div>
@@ -67,7 +68,6 @@ export class ZqGridComponent implements OnInit{
   }
     constructor(public modalService:ModalService) {
      
-     
     }
     ngOnInit(){
       this.pageSizeOption = [
@@ -82,7 +82,7 @@ export class ZqGridComponent implements OnInit{
       var index = {
         headerName: '序号',
         field: 'no',
-        width: 50,
+        width: 45,
         pinned: 'left',
         cellRenderer: function(params) {
           var index = params.node.id*1 + 1
@@ -95,17 +95,10 @@ export class ZqGridComponent implements OnInit{
       var select = {
         headerName: '',
         field: 'checkBox',
-        width: 30,
+        width: 18,
         pinned: 'left',
-        cellStyle: function(params) {
-          return {'text-align': 'center'};
-        },
-        checkboxSelection: function (params) {
-          return params.columnApi.getRowGroupColumns().length === 0;
-        },
-        headerCheckboxSelection: function (params) {
-          return params.columnApi.getRowGroupColumns().length === 0;
-        }
+        headerCheckboxSelection: true,
+        checkboxSelection: true
       }
       if(this.gridOption.gridSelect){
         columns = [index,select];
@@ -113,6 +106,7 @@ export class ZqGridComponent implements OnInit{
         columns = [index];
       }
       this.gridOption.columnDefs = columns.concat(this.gridOption.columnDefs);
+      
     }
     
     //第一页
@@ -147,6 +141,7 @@ export class ZqGridComponent implements OnInit{
       }
       this.totalPage = this.gridOption.api.paginationGetTotalPages();
       this.currentPageNum = this.gridOption.api.paginationGetCurrentPage()+1;
+      console.log("======totalPage=======",this.gridOption)
       if(this.pageNumList.indexOf(this.currentPageNum)==-1){
         var value = this.currentPageNum%5;
          if(params == "next" || params.type == "gridReady" || params.type == "initPage"){//如果是下一页、修改pageSize或者表格刚初始化完成的时候
@@ -173,6 +168,9 @@ export class ZqGridComponent implements OnInit{
          }
       } 
     }
+    onColumnValueChanged(event){
+      console.log("======数据发生改变=======")
+    }
     //获取pageSize
     getPageSize(event){
       this.targetNum = '';
@@ -193,6 +191,9 @@ export class ZqGridComponent implements OnInit{
         fileName: this.gridOption.fileName
       };
       this.gridOption.api.exportDataAsExcel(params);
+    }
+    doDelete(param){
+      console.log("=====表格数据改变======",param)
     }
   
    
